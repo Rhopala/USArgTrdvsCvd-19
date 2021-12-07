@@ -1,0 +1,14 @@
+---
+title: "About"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## About this site
+
+This site is created for a project of a Data Science course using R for now.
+
+course link:
+[P8105](https://www.p8105.com/)
