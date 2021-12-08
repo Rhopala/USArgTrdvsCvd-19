@@ -18,7 +18,7 @@ navbar:
         href: China_import.html
       - text: "Section 4"
       - text: "correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports"
-        href: Cases-vs-Volume.html
+        href: Cases-vs-volume.html
     - icon: fa-envelope fa-lg
       href: mailto:<xc2610@cumc.columbia.edu>
     - icon: fa-github fa-lg
