@@ -1,9 +1,7 @@
 ---
 title: "Covid Cases vs. Export/Import Volume"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+  flexdashboard::flex_dashboard
 ---
 
 ```{r setup, include=FALSE}
@@ -92,7 +90,7 @@ export_df =
   na.omit() %>% 
   nest(data = confirmed_of_month:export_volume) %>% 
   mutate(
-    lm_fits = map(.x = data, ~ lm(export_volume ~ confirmed_of_month, data = .x), na.action = na.omit()),
+    lm_fits = map(.x = data, ~ lm(export_volume ~ confirmed_of_month + deaths_of_month, data = .x)),
     lm_results = map(lm_fits, broom::tidy)) %>% 
   select(month, year, lm_results) %>% 
   unnest(lm_results) 
@@ -101,12 +99,6 @@ export_df %>%
   na.omit() %>% 
   ggplot(aes(x = estimate)) +
   geom_density()
-
-export_df %>%  
-  ggplot(aes(x = month, y = estimate)) + 
-  geom_point() + 
-  facet_grid(~term) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
 export_plot = combined_df %>% 
   group_by(month, year, confirmed_of_month) %>% 
@@ -149,11 +141,6 @@ import_df %>%
   ggplot(aes(x = estimate)) +
   geom_density()
 
-import_df %>% 
-  ggplot(aes(x = month, y = estimate)) + 
-  geom_point() + 
-  facet_grid(~term) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
 import_plot = combined_df %>% 
   group_by(month, year, confirmed_of_month) %>% 
