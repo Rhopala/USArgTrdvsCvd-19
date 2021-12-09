@@ -3,6 +3,7 @@ title: "Average data before/after COVID"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
+    vertical_layout: scroll
 ---
 
 ```{r setup, include=FALSE}
@@ -36,7 +37,6 @@ import_volume_df =
 export_volume_df = 
   read_csv("data/cleaned data/export_volume_combined.csv")
 ```
-
 
 
 ```{r message=FALSE}
