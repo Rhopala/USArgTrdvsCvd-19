@@ -1,8 +1,7 @@
 ---
 title: "Average data before/after COVID"
 output: 
-  flexdashboard::flex_dashboard:
-    code_folding: hide
+  flexdashboard::flex_dashboard
 ---
 
 ```{r setup, include=FALSE}
