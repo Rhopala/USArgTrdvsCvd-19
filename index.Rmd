@@ -1,26 +1,42 @@
 ---
 title: "Correlation between US Foreign Agricultural Trade and COVID-19 Impact"
-author: "AnMei Chen, Lynn Chen, Xuanhe Chen, Zoey Zhao, Xinyi Zhou"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
-# Backgrounds:
+### Project Motivation
 The message Americans have been getting about inflation in recent months can be expressed in one word: frightening. Last year, as COVID-19 affected the world economy and disrupted trade flows, which also has had unprecedented effects on all dimensions of human life. Yet, it is certainly not our imagination: groceries do cost more now than prior to pandemic. The increase in food prices that we’ve seen over the past eight months is real and meaningful. According to the U.S. Bureau of Labor Statistics, food prices overall rose about 4.6% since September 2020. 
 
 The effects of pandemic have been felt in almost every sector, and the agricultural market is no different. Our project intends to look deeper into the impact of Covid-19 on agricultural trade and how it's affecting both supply and demand.
 
-# Data Resource:
-In this project, we used the Foreign Agricultural Trade of the United States (FATUS) data of 2018 to 2021 from the USDA public government research service: 
+### Initial Questions
+
+### Data
+#### Data sources
+In this project, we used the Foreign Agricultural Trade of the United States (FATUS) data of 2018 to 2021 from the USDA public government research service 
 [Agricaltural Trade Data Reference](https://www.ers.usda.gov/data-products/foreign-agricultural-trade-of-the-united-states-fatus/u-s-agricultural-trade-data-update/)
-And Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University:
+and Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University:
 [Covid-19 Data Reference](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us)
 
-# Data Analysis:
+#### Data Cleaning
 
 
-# Discussions:
+### Exploratory Analysis
 
-# Links
+
+### Discussions
+#### Key Findings
+
+
+#### Insights
+
+### Contributors
+* AnMei Chen 
+* Lynn Chen
+* Xuanhe Chen
+* Zoey Zhao
+* Xinyi Zhou
+
+### Links
 * [About](about.html)

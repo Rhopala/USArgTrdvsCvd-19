@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r}
+```{r message=FALSE}
 ## Import data 
 covid = 
   read_csv("./data/covid_data_monthly.csv") %>% 
@@ -83,7 +83,7 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
 
 ## export vs. covid case 
 
-```{r}
+```{r message=FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
 summary(export_fit)
 
@@ -131,7 +131,7 @@ combined_df %>%
 
 ## import vs. covid case 
 
-```{r}
+```{r message=FALSE}
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 

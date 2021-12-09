@@ -5,7 +5,7 @@ navbar:
   right:
     - text: "About"
       href: about.html
-    - text: "Data Analysis"
+    - text: "Exploratory Analysis"
       menu:
       - text: "Section 1"
       - text: "average monthly import values before (2018-2019) and after (2020-2021) Covid-19"
@@ -26,4 +26,5 @@ navbar:
 
 output:
   html_document:
-    theme: sandstone
+    code_folding: hide
+    theme: flatly

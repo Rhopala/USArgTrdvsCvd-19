@@ -1,9 +1,7 @@
 ---
 title: "Average data before/after COVID"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: rows
-    vertical_layout: scroll
+  flexdashboard::flex_dashboard
 ---
 
 ```{r setup, include=FALSE}
@@ -24,7 +22,7 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-```{r}
+```{r load data, include=FALSE}
 import_value_df = 
   read_csv("data/cleaned data/import_value_combined.csv")
 
@@ -39,9 +37,9 @@ export_volume_df =
 ```
 
 
-## two-panel (export value/import value) bar chart 
+=====================================  
 
-```{r}
+```{r message=FALSE}
 before_covid_import_value =
   import_value_df %>% 
   filter(year == "2018" | year == "2019") %>% 
@@ -80,6 +78,7 @@ covid_export_value_df =
 ```
 
 
+### Average Import Value Before/After Covid
 
 ```{r}
 covid_import_value_plot =  
@@ -94,13 +93,20 @@ covid_import_value_plot =
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
     axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 6, face = "bold"),
+    axis.title = element_text(size = 7, face = "bold"),
     legend.key.size = unit(0.5,"cm"),
     legend.text = element_text(size = 5),
     legend.title = element_text(size = 6),
     plot.title = element_text(size = 8,face = "bold")
     ) 
 
+ggplotly(covid_import_value_plot)
+
+```
+
+### Average Export Value Before/After Covid
+
+```{r}
 covid_export_value_plot =  
   covid_export_value_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
@@ -113,33 +119,29 @@ covid_export_value_plot =
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
     axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 6, face = "bold"),
+    axis.title = element_text(size = 7, face = "bold"),
     legend.key.size = unit(0.5,"cm"),
     legend.text = element_text(size = 5),
     legend.title = element_text(size = 6),
     plot.title = element_text(size = 8, face = "bold")
     )
-```
 
-
-
-```{r}
-
-ggplotly(covid_import_value_plot)
 ggplotly(covid_export_value_plot)
-#ggarrange(covid_import_value_plot, covid_export_value_plot, ncol = 1)
+
 ```
+
+
 
 <!--
 Column {data-width=650}
 -----------------------------------------------------------------------
 -->
 
-## two-panel (export volume/import volume ) bar chart 
+
+=====================================
 
 
-
-```{r}
+```{r message=FALSE}
 before_covid_import_volume =
   import_volume_df %>%
   filter(year == "2018" | year == "2019") %>% 
@@ -175,7 +177,7 @@ covid_export_volume_df =
   rbind(before_covid_export_volume,after_covid_export_volume)
 ```
 
-
+## Average Import Volume Before/After Covid
 ```{r}
 covid_import_volume_plot =  
   covid_import_volume_df %>%
@@ -189,14 +191,20 @@ covid_import_volume_plot =
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
     axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 6, face = "bold"),
+    axis.title = element_text(size = 7, face = "bold"),
     legend.key.size = unit(0.5,"cm"),
     legend.text = element_text(size = 5),
     legend.title = element_text(size = 6),
     plot.title = element_text(size = 8,face = "bold")
     ) 
 
+ggplotly(covid_import_volume_plot)
 
+```
+
+## Average Export Volume Before/After Covid
+
+```{r}
 covid_export_volume_plot =  
   covid_export_volume_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
@@ -209,14 +217,13 @@ covid_export_volume_plot =
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
     axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 6, face = "bold"),
+    axis.title = element_text(size = 7, face = "bold"),
     legend.key.size = unit(0.5,"cm"),
     legend.text = element_text(size = 5),
     legend.title = element_text(size = 6),
     plot.title = element_text(size = 8, face = "bold")
     )
 
-ggplotly(covid_import_volume_plot)
 ggplotly(covid_export_volume_plot)
-#ggarrange(covid_import_volume_plot, covid_export_volume_plot, ncol = 1)
 ```
+
