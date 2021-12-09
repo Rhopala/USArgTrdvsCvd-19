@@ -2,7 +2,8 @@
 title: "Average data before/after COVID"
 output: 
   flexdashboard::flex_dashboard:
-    vertical_layout: scroll
+    orientation: rows
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
