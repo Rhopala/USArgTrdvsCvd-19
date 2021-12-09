@@ -15,7 +15,7 @@ The effects of pandemic have been felt in almost every sector, and the agricultu
 We would like to use data visualization with graphs to analyze the effect of Covid-19 pandemic on U.S. agricultural imports and exports including finding the top 3 agricultural products that have been affected most by Covid-19 in import and export. We are also interested in finding the impact of Covid-19 on top 10 export countries for wheat, corn, soybeans, and cotton from the U.S.
 
 ## Data
-### Data sources
+### Data Sources
 In this project, we used the Foreign Agricultural Trade of the United States (FATUS) data of 2018 to 2021 from the USDA public government research service 
 [Agricaltural Trade Data Reference](https://www.ers.usda.gov/data-products/foreign-agricultural-trade-of-the-united-states-fatus/u-s-agricultural-trade-data-update/)
 and Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University:
