@@ -10,16 +10,16 @@ navbar:
     - text: "Exploratory Analysis"
       menu:
       - text: "Section 1"
-      - text: "average monthly import values before (2018-2019) and after (2020-2021) Covid-19"
+      - text: "Average monthly import values before (2018-2019) and after (2020-2021) Covid-19"
         href: Spaghetti-before-after-COVID.html
       - text: "Section 2"
-      - text: "average export/import value/volume of each product type for 2018-2019 and 2020-2021"
+      - text: "Average export/import value/volume of each product type for 2018-2019 and 2020-2021"
         href: Bar-before-after-COVID.html
       - text: "Section 3"
-      - text: "import/export change with China under the pandemic"
+      - text: "Import/Export change with China under the pandemic"
         href: China_import.html
       - text: "Section 4"
-      - text: "correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports"
+      - text: "Correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports"
         href: Cases-vs-volume.html
     - icon: fa-github fa-lg
       href: https://github.com/Rhopala/P8105_FinalProject_ArgTrdvsCvd-19

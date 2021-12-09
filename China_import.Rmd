@@ -14,7 +14,7 @@ library(plotly)
 # Import from China
 
 ## Combine data
-```{r}
+```{r message=FALSE}
 import2018 <-
   read_csv("./data/top10_import_value_2018.csv")%>%
   janitor::clean_names()%>%
@@ -59,7 +59,7 @@ write_csv(import_afterCOVID, "./data/cleaned data/Import from China afterCOVID.c
 ```
 
 ## Plot
-```{r}
+```{r message=FALSE}
 plot2_before <- 
   read_csv("./data/cleaned data/Import from China beforeCOVID.csv")%>%
   group_by(commodity)%>%
@@ -97,7 +97,7 @@ subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
 # Export to China
 
 ## Combine data
-```{r}
+```{r message=FALSE}
 export2018 <-
   read_csv("./data/top10_export_volume_2018.csv")%>%
   janitor::clean_names()%>%
@@ -152,7 +152,7 @@ write_csv(afterCOVID, "./data/cleaned data/Export to China afterCOVID.csv")
 
 ## Plot
 
-```{r}
+```{r message=FALSE}
 plot_before <- 
   read_csv("./data/cleaned data/Export to China beforeCOVID.csv")%>%
   group_by(commodity)%>%

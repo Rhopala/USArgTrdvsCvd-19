@@ -2,8 +2,7 @@
 title: "Average data before/after COVID"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    vertical_layout: scroll
 ---
 
 ```{r setup, include=FALSE}
@@ -81,6 +80,7 @@ covid_export_value_df =
 
 ### Average Import Value Before/After Covid
 
+<center>
 ```{r}
 covid_import_value_plot =  
   covid_import_value_df %>%
@@ -104,9 +104,12 @@ covid_import_value_plot =
 ggplotly(covid_import_value_plot)
 
 ```
+</center>
+
 
 ### Average Export Value Before/After Covid
 
+<center>
 ```{r}
 covid_export_value_plot =  
   covid_export_value_df %>%
@@ -130,7 +133,7 @@ covid_export_value_plot =
 ggplotly(covid_export_value_plot)
 
 ```
-
+</center>
 
 
 ```{r message=FALSE}
@@ -170,6 +173,8 @@ covid_export_volume_df =
 ```
 
 ## Average Import Volume Before/After Covid
+
+<center>
 ```{r}
 covid_import_volume_plot =  
   covid_import_volume_df %>%
@@ -193,9 +198,11 @@ covid_import_volume_plot =
 ggplotly(covid_import_volume_plot)
 
 ```
+</center>
 
 ## Average Export Volume Before/After Covid
 
+<center>
 ```{r}
 covid_export_volume_plot =  
   covid_export_volume_df %>%
@@ -218,4 +225,4 @@ covid_export_volume_plot =
 
 ggplotly(covid_export_volume_plot)
 ```
-
+</center>
