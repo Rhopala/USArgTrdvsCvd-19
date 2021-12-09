@@ -6,7 +6,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Project Report"
-      href: index.html
+      href: project_report.html
     - text: "Exploratory Analysis"
       menu:
       - text: "Section 1"
