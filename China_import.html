@@ -14,10 +14,10 @@
 
 <title>Import from China &amp; Export to China</title>
 
-<script src="site_libs/header-attrs-2.11.3/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -31,6 +31,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
@@ -225,6 +226,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -259,26 +263,26 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Data Analysis
+    Exploratory Analysis
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Block 1</li>
+    <li class="dropdown-header">Section 1</li>
     <li>
       <a href="Spaghetti-before-after-COVID.html">average monthly import values before (2018-2019) and after (2020-2021) Covid-19</a>
     </li>
-    <li class="dropdown-header">Block 2</li>
+    <li class="dropdown-header">Section 2</li>
     <li>
       <a href="Bar-before-after-COVID.html">average export/import value/volume of each product type for 2018-2019 and 2020-2021</a>
     </li>
-    <li class="dropdown-header">Block 3</li>
+    <li class="dropdown-header">Section 3</li>
     <li>
-      <a href="about.html">import/export change with China under the pandemic</a>
+      <a href="China_import.html">import/export change with China under the pandemic</a>
     </li>
-    <li class="dropdown-header">Block 4</li>
+    <li class="dropdown-header">Section 4</li>
     <li>
-      <a href="Cases-vs-Volume.html">correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports</a>
+      <a href="Cases-vs-volume.html">correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports</a>
     </li>
   </ul>
 </li>
@@ -301,6 +305,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Import from China &amp; Export to China</h1>
@@ -321,13 +333,13 @@ $(document).ready(function () {
   mutate(commodity = product)%&gt;%
   select(year, month, commodity, value)</code></pre>
 <pre><code>## Rows: 528 Columns: 5</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): product, month, country
 ## dbl (2): year, value</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>import2019 &lt;-
   read_csv(&quot;./data/Top 10 Import Clean 2019.csv&quot;)%&gt;%
   janitor::clean_names()%&gt;%
@@ -337,13 +349,13 @@ $(document).ready(function () {
          year = 2019)%&gt;%
   select(year, month, commodity, value)</code></pre>
 <pre><code>## Rows: 480 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): Import_Country, Commodity, Month
 ## dbl (1): Import_Value</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>import2020 &lt;-
   read_csv(&quot;./data/Top 10 Import Clean 2020.csv&quot;)%&gt;%
   janitor::clean_names()%&gt;%
@@ -351,13 +363,13 @@ $(document).ready(function () {
   mutate(value = import_values)%&gt;%
   select(year, month, commodity, value)</code></pre>
 <pre><code>## Rows: 660 Columns: 5</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): Month, Import Country, Commodity
 ## dbl (2): Year, Import Values</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>import2021 &lt;-
   read_xlsx(&quot;./data/Top10_import2021.xlsx&quot;)%&gt;%
   mutate(value = import_value)%&gt;%
@@ -393,13 +405,13 @@ write_csv(import_afterCOVID, &quot;./data/cleaned data/Import from China afterCO
                       categoryorder = &quot;array&quot;,
                       categoryarray = ~ month))</code></pre>
 <pre><code>## Rows: 72 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): month, commodity
 ## dbl (2): year, value</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>plot2_after &lt;-
   read_csv(&quot;./data/cleaned data/Import from China afterCOVID.csv&quot;)%&gt;%
   group_by(commodity)%&gt;%
@@ -415,18 +427,18 @@ write_csv(import_afterCOVID, &quot;./data/cleaned data/Import from China afterCO
          legend = list(title = list(text=&#39;&lt;b&gt; Commodity &lt;/b&gt;&#39;),
                        font = list(size = 8)))</code></pre>
 <pre><code>## Rows: 63 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): month, commodity
 ## dbl (2): year, value</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%&gt;%
   layout(title = &#39;Total Values of Monthly Import from China Before and After COVID&#39;,
          yaxis = list(title = &#39;Values (Million dollars)&#39;))</code></pre>
-<div id="htmlwidget-11cfbe45908c737e1687" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-11cfbe45908c737e1687">{"x":{"data":[{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[51.81,46.06,47.445,43.478,53.439,52.374,47.09,45.126,45.77,43.055,49.611,49.611,35.371,37.17,37.17,34.704,37.465,31.205,34.711,31.46,34.78,32.312,30.581,37.617],"legendgroup":"Fruits, prepared or preserved","showlegend":false,"type":"bar","name":"Fruits, prepared or preserved","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[9.796,18.133,17.003,19.271,20.439,18.132,17.846,18.698,17.702,17.707,17.533,20.354,21.487,20.143,20.161,19.504,15.546,10.219,14.683,17.342,17.329,19.843,18.71,20.779],"legendgroup":"Vegetables, fresh or frozen","showlegend":false,"type":"bar","name":"Vegetables, fresh or frozen","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[46.753,38.58,38.449,38.172,42.48,42.896,36.371,33.616,36.758,35.873,39.831,66.313,38.148,24.15,24.15,35.631,35.193,35.458,38.425,31.65,35.635,37.04,34.242,37.46],"legendgroup":"Vegetables, prepared or preserved","showlegend":false,"type":"bar","name":"Vegetables, prepared or preserved","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[40.662,32.348,19.269,38.016,40.699,42.395,41.914,43.288,30.491,33.49,33.194,36.089,37.913,34.731,40.836,31.316,33.188,28.932,26.401,34.728,30.489],"legendgroup":"Fruits, prepared or preserved","type":"bar","name":"Fruits, prepared or preserved","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[21.905,17.864,7.612,17.172,18.996,15.027,15.669,15.301,13.135,15.971,16.466,17.07,16.397,14.941,20.225,15.646,16.401,17.577,17.19,18.136,10.974],"legendgroup":"Vegetables, fresh or frozen","type":"bar","name":"Vegetables, fresh or frozen","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[34.784,27.796,23.167,39.669,45.394,32.473,34.946,35.093,29.584,36.098,34.546,37.9,36.641,32.387,37.062,37.567,37.751,32.829,26.471,31.342,29.673],"legendgroup":"Vegetables, prepared or preserved","type":"bar","name":"Vegetables, prepared or preserved","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x2","yaxis":"y","frame":null}],"layout":{"xaxis":{"domain":[0,0.48],"automargin":true,"title":"Month (2018-2019)","categoryorder":"array","categoryarray":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"type":"category","anchor":"y"},"xaxis2":{"domain":[0.52,1],"automargin":true,"title":"Month (2020-2021)","categoryorder":"array","categoryarray":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Jan","Jan","Feb","Feb","Feb","Mar","Mar","Mar","Apr","Apr","Apr","May","May","May","Jun","Jun","Jun","Jul","Jul","Jul","Aug","Aug","Aug","Sep","Sep","Sep"],"type":"category","anchor":"y"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Values (Million dollars)","anchor":"x"},"annotations":[],"shapes":[],"images":[],"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true,"legend":{"title":{"text":"<b> Commodity <\/b>"},"font":{"size":8}},"title":"Total Values of Monthly Import from China Before and After COVID"},"attrs":{"41441e787f23":{"x":{},"y":{},"legendgroup":{},"showlegend":false,"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"41441c9e52ee":{"x":{},"y":{},"legendgroup":{},"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-253e692d29b5eb2e8a85" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-253e692d29b5eb2e8a85">{"x":{"data":[{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[51.81,46.06,47.445,43.478,53.439,52.374,47.09,45.126,45.77,43.055,49.611,49.611,35.371,37.17,37.17,34.704,37.465,31.205,34.711,31.46,34.78,32.312,30.581,37.617],"legendgroup":"Fruits, prepared or preserved","showlegend":false,"type":"bar","name":"Fruits, prepared or preserved","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[9.796,18.133,17.003,19.271,20.439,18.132,17.846,18.698,17.702,17.707,17.533,20.354,21.487,20.143,20.161,19.504,15.546,10.219,14.683,17.342,17.329,19.843,18.71,20.779],"legendgroup":"Vegetables, fresh or frozen","showlegend":false,"type":"bar","name":"Vegetables, fresh or frozen","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"y":[46.753,38.58,38.449,38.172,42.48,42.896,36.371,33.616,36.758,35.873,39.831,66.313,38.148,24.15,24.15,35.631,35.193,35.458,38.425,31.65,35.635,37.04,34.242,37.46],"legendgroup":"Vegetables, prepared or preserved","showlegend":false,"type":"bar","name":"Vegetables, prepared or preserved","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[40.662,32.348,19.269,38.016,40.699,42.395,41.914,43.288,30.491,33.49,33.194,36.089,37.913,34.731,40.836,31.316,33.188,28.932,26.401,34.728,30.489],"legendgroup":"Fruits, prepared or preserved","type":"bar","name":"Fruits, prepared or preserved","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[21.905,17.864,7.612,17.172,18.996,15.027,15.669,15.301,13.135,15.971,16.466,17.07,16.397,14.941,20.225,15.646,16.401,17.577,17.19,18.136,10.974],"legendgroup":"Vegetables, fresh or frozen","type":"bar","name":"Vegetables, fresh or frozen","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"],"y":[34.784,27.796,23.167,39.669,45.394,32.473,34.946,35.093,29.584,36.098,34.546,37.9,36.641,32.387,37.062,37.567,37.751,32.829,26.471,31.342,29.673],"legendgroup":"Vegetables, prepared or preserved","type":"bar","name":"Vegetables, prepared or preserved","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x2","yaxis":"y","frame":null}],"layout":{"xaxis":{"domain":[0,0.48],"automargin":true,"title":"Month (2018-2019)","categoryorder":"array","categoryarray":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"type":"category","anchor":"y"},"xaxis2":{"domain":[0.52,1],"automargin":true,"title":"Month (2020-2021)","categoryorder":"array","categoryarray":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Jan","Jan","Feb","Feb","Feb","Mar","Mar","Mar","Apr","Apr","Apr","May","May","May","Jun","Jun","Jun","Jul","Jul","Jul","Aug","Aug","Aug","Sep","Sep","Sep"],"type":"category","anchor":"y"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Values (Million dollars)","anchor":"x"},"annotations":[],"shapes":[],"images":[],"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true,"legend":{"title":{"text":"<b> Commodity <\/b>"},"font":{"size":8}},"title":"Total Values of Monthly Import from China Before and After COVID"},"attrs":{"87e85a8705e9":{"x":{},"y":{},"legendgroup":{},"showlegend":false,"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"87e85695326d":{"x":{},"y":{},"legendgroup":{},"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="export-to-china" class="section level1">
@@ -441,13 +453,13 @@ write_csv(import_afterCOVID, &quot;./data/cleaned data/Import from China afterCO
          commodity = product)%&gt;%
   select(year, month, commodity, export_volume)</code></pre>
 <pre><code>## Rows: 528 Columns: 5</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): product, month, country
 ## dbl (2): year, volume</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>export2019 &lt;-
   read_csv(&quot;./data/Top 10 Export Clean 2019.csv&quot;)%&gt;%
   janitor::clean_names()%&gt;%
@@ -460,13 +472,13 @@ write_csv(import_afterCOVID, &quot;./data/cleaned data/Import from China afterCO
     commodity == &quot;Cotton,ex linters&quot; ~ &quot;Cotton&quot;
   ))</code></pre>
 <pre><code>## Rows: 480 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): Export_Country, Commodity, Month
 ## dbl (1): Export_Volume</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>export2020 &lt;- 
   read_csv(&quot;./data/Top 10 Export Clean 2020.csv&quot;)%&gt;%
   janitor::clean_names()%&gt;%
@@ -479,13 +491,13 @@ write_csv(import_afterCOVID, &quot;./data/cleaned data/Import from China afterCO
     TRUE ~ commodity
   ))</code></pre>
 <pre><code>## Rows: 660 Columns: 5</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): Month, Export Country, Commodity
 ## dbl (2): Year, Export Values</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>export2021 &lt;-
   read_xlsx(&quot;./data/Top10_export2021.xlsx&quot;)%&gt;%
   select(year, month, commodity, export_volume)%&gt;%
@@ -522,13 +534,13 @@ write_csv(afterCOVID, &quot;./data/cleaned data/Export to China afterCOVID.csv&q
                       categoryarray = ~ month),
          yaxis = list(title = &#39;Sum of monthly volumes (Metric tons)&#39;))</code></pre>
 <pre><code>## Rows: 62 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): month, commodity
 ## dbl (2): year, export_volume</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>plot_after &lt;-
   read_csv(&quot;./data/cleaned data/Export to China afterCOVID.csv&quot;)%&gt;%
   group_by(commodity)%&gt;%
@@ -544,18 +556,18 @@ write_csv(afterCOVID, &quot;./data/cleaned data/Export to China afterCOVID.csv&q
          yaxis = list(title = &#39;Sum of monthly volumes (Metric tons)&#39;),
          legend = list(title=list(text=&#39;&lt;b&gt; Commodity &lt;/b&gt;&#39;)))</code></pre>
 <pre><code>## Rows: 74 Columns: 4</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): month, commodity
 ## dbl (2): year, export_volume</code></pre>
 <pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>subplot(plot_before, plot_after, nrows = 2, shareX = TRUE, titleY = FALSE)%&gt;%
   layout(title = &#39;Total Volume of Monthly Export to China Before and After COVID&#39;,
          yaxis = list(title = &#39;Volumes (Metric tons) //////&#39;))</code></pre>
-<div id="htmlwidget-ce1ea0c14bb2aa5261ac" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ce1ea0c14bb2aa5261ac">{"x":{"data":[{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December"],"y":[82975,73841.3,73865.5,69050.9,48337.7,21324.2,22091,12326.1,17004.2,12810.6,23360.8,27797.8,38575.4,31758.5,41481.8,51697.5,54986.7,55965.6,15901.2,17517.1,25125.4,6895.1,24742.4,43454.9,38575.4,31758.5,41481.8,51697.5,54986.7,55965.6,15901.2,17517.1,25125.4,6895.1,24742.4,43454.9],"legendgroup":"Cotton","showlegend":false,"type":"bar","name":"Cotton","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December"],"y":[3209633.4,2093392.6,1044995.4,406575.8,533085.2,271411,233865,67852,67446,271973,66000,69691.6,931362.4,521757.8,288885,188970.7,1277317,1727035,1937795,2677076,966626,1761648,4239145,2625802],"legendgroup":"Soybeans","showlegend":false,"type":"bar","name":"Soybeans","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["May","September"],"y":[63000,17004.2],"legendgroup":"Wheat","showlegend":false,"type":"bar","name":"Wheat","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[355414,211756,124840,273857,376663,292379,234694,382639,1090074,1122737,1747587,2550973,3407301,2750013,2683161,1100422,492824],"legendgroup":"Corn","type":"bar","name":"Corn","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[47673.6,56278.6,58488.8,53863.4,74579.9,104846.4,142710.7,152332.1,80271.1,113086.7,135037.2,163348.7,132673.9,90158,58170.3,76553.8,61866.9,47178.3,30528.8,38959.3,24207.7],"legendgroup":"Cotton","type":"bar","name":"Cotton","marker":{"color":"rgba(49,104,142,1)","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[2141050,471761,208505,423891,164218,353688.7,445573,2450315,5068131,8352777.6,7802279.9,6824014,5426770.2,1385685,490496.2,85728.9,39794.6,20581.3,38916,416852.9,898491.2],"legendgroup":"Soybeans","type":"bar","name":"Soybeans","marker":{"color":"rgba(53,183,121,1)","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[452712,1177484,983732,1101488,1284311,1528825,100825,266418,273176,577657,332098,130384,70200,389340,208544],"legendgroup":"Wheat","type":"bar","name":"Wheat","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y2","frame":null}],"layout":{"xaxis":{"domain":[0,1],"automargin":true,"title":"Month (2020-2021)","categoryorder":"array","categoryarray":["January","February","March","April","May","June","July","August","September","October","November","December","July","August","September","October","November","December","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December","January","January","January","January","February","February","February","February","March","March","March","March","April","April","April","April","May","May","May","May","June","June","June","June","July","July","July","July","August","August","August","August","September","September","September","September"],"type":"category","anchor":"y2"},"yaxis2":{"domain":[0,0.48],"automargin":true,"anchor":"x"},"yaxis":{"domain":[0.52,1],"automargin":true,"anchor":"x","title":"Volumes (Metric tons) //////"},"annotations":[],"shapes":[],"images":[],"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true,"legend":{"title":{"text":"<b> Commodity <\/b>"}},"title":"Total Volume of Monthly Export to China Before and After COVID"},"attrs":{"4144322a291c":{"x":{},"y":{},"legendgroup":{},"showlegend":false,"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"41447486657c":{"x":{},"y":{},"legendgroup":{},"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b99e88ede364cb3083c2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b99e88ede364cb3083c2">{"x":{"data":[{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December"],"y":[82975,73841.3,73865.5,69050.9,48337.7,21324.2,22091,12326.1,17004.2,12810.6,23360.8,27797.8,38575.4,31758.5,41481.8,51697.5,54986.7,55965.6,15901.2,17517.1,25125.4,6895.1,24742.4,43454.9,38575.4,31758.5,41481.8,51697.5,54986.7,55965.6,15901.2,17517.1,25125.4,6895.1,24742.4,43454.9],"legendgroup":"Cotton","showlegend":false,"type":"bar","name":"Cotton","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December"],"y":[3209633.4,2093392.6,1044995.4,406575.8,533085.2,271411,233865,67852,67446,271973,66000,69691.6,931362.4,521757.8,288885,188970.7,1277317,1727035,1937795,2677076,966626,1761648,4239145,2625802],"legendgroup":"Soybeans","showlegend":false,"type":"bar","name":"Soybeans","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"textfont":{"color":"rgba(33,144,141,1)"},"error_y":{"color":"rgba(33,144,141,1)"},"error_x":{"color":"rgba(33,144,141,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["May","September"],"y":[63000,17004.2],"legendgroup":"Wheat","showlegend":false,"type":"bar","name":"Wheat","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[355414,211756,124840,273857,376663,292379,234694,382639,1090074,1122737,1747587,2550973,3407301,2750013,2683161,1100422,492824],"legendgroup":"Corn","type":"bar","name":"Corn","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[47673.6,56278.6,58488.8,53863.4,74579.9,104846.4,142710.7,152332.1,80271.1,113086.7,135037.2,163348.7,132673.9,90158,58170.3,76553.8,61866.9,47178.3,30528.8,38959.3,24207.7],"legendgroup":"Cotton","type":"bar","name":"Cotton","marker":{"color":"rgba(49,104,142,1)","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["January","February","March","April","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[2141050,471761,208505,423891,164218,353688.7,445573,2450315,5068131,8352777.6,7802279.9,6824014,5426770.2,1385685,490496.2,85728.9,39794.6,20581.3,38916,416852.9,898491.2],"legendgroup":"Soybeans","type":"bar","name":"Soybeans","marker":{"color":"rgba(53,183,121,1)","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["July","August","September","October","November","December","January","February","March","April","May","June","July","August","September"],"y":[452712,1177484,983732,1101488,1284311,1528825,100825,266418,273176,577657,332098,130384,70200,389340,208544],"legendgroup":"Wheat","type":"bar","name":"Wheat","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y2","frame":null}],"layout":{"xaxis":{"domain":[0,1],"automargin":true,"title":"Month (2020-2021)","categoryorder":"array","categoryarray":["January","February","March","April","May","June","July","August","September","October","November","December","July","August","September","October","November","December","May","June","July","August","September","October","November","December","January","February","March","April","May","June","July","August","September","October","November","December","January","January","January","January","February","February","February","February","March","March","March","March","April","April","April","April","May","May","May","May","June","June","June","June","July","July","July","July","August","August","August","August","September","September","September","September"],"type":"category","anchor":"y2"},"yaxis2":{"domain":[0,0.48],"automargin":true,"anchor":"x"},"yaxis":{"domain":[0.52,1],"automargin":true,"anchor":"x","title":"Volumes (Metric tons) //////"},"annotations":[],"shapes":[],"images":[],"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":true,"legend":{"title":{"text":"<b> Commodity <\/b>"}},"title":"Total Volume of Monthly Export to China Before and After COVID"},"attrs":{"87e84fb01e70":{"x":{},"y":{},"legendgroup":{},"showlegend":false,"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"87e8339e73ef":{"x":{},"y":{},"legendgroup":{},"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -592,6 +604,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

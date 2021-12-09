@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "About"
       href: about.html
+    - text: "Project Report"
+      href: index.html
     - text: "Exploratory Analysis"
       menu:
       - text: "Section 1"
@@ -19,8 +21,6 @@ navbar:
       - text: "Section 4"
       - text: "correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports"
         href: Cases-vs-volume.html
-    - icon: fa-envelope fa-lg
-      href: mailto:<xc2610@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: https://github.com/Rhopala/P8105_FinalProject_ArgTrdvsCvd-19
 

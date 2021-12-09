@@ -11,7 +11,7 @@
 
 
 
-<title>About</title>
+<title>Correlation between US Foreign Agricultural Trade and COVID-19 Impact</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
@@ -227,69 +224,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -297,16 +231,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -328,6 +252,9 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="about.html">About</a>
+</li>
+<li>
+  <a href="index.html">Project Report</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -355,12 +282,6 @@ div.tocify {
   </ul>
 </li>
 <li>
-  <a href="mailto:&lt;xc2610@cumc.columbia.edu&gt;">
-    <span class="fa fa-envelope fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://github.com/Rhopala/P8105_FinalProject_ArgTrdvsCvd-19">
     <span class="fa fa-github fa-lg"></span>
      
@@ -383,21 +304,23 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">About</h1>
+<h1 class="title toc-ignore">Correlation between US Foreign Agricultural Trade and COVID-19 Impact</h1>
 
 </div>
 
 
-<div id="about-this-site" class="section level2">
-<h2>About this site</h2>
-<p>This site is created for a project of a Data Science course using R for now.</p>
-<p>course link: <a href="https://www.p8105.com/">P8105</a></p>
+<center>
+<br><br><img src="images/image_1.jpeg" alt="logo" style="width:50%; border:10px solid"><br>
+</center>
+<div id="project-motivation" class="section level3">
+<h3>Project Motivation</h3>
+<p>The message Americans have been getting about inflation in recent months can be expressed in one word: frightening. Last year, as COVID-19 affected the world economy and disrupted trade flows, which also has had unprecedented effects on all dimensions of human life. Yet, it is certainly not our imagination: groceries do cost more now than prior to pandemic. The increase in food prices that we’ve seen over the past eight months is real and meaningful. According to the U.S. Bureau of Labor Statistics, food prices overall rose about 4.6% since September 2020.</p>
+<p>The effects of pandemic have been felt in almost every sector, and the agricultural market is no different. Our project intends to look deeper into the impact of Covid-19 on agricultural trade and how it’s affecting both supply and demand.</p>
+<p><font size="1">Contributors:</font> <font size="1">AnMei Chen, Lynn Chen, Xuanhe Chen, Zoey Zhao, Xinyi Zhou</font></p>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -435,35 +358,6 @@ $(document).ready(function () {
 });
 </script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
