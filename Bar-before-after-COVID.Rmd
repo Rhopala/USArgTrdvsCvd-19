@@ -1,7 +1,8 @@
 ---
 title: "Average data before/after COVID"
 output: 
-  flexdashboard::flex_dashboard
+  flexdashboard::flex_dashboard:
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -37,7 +38,6 @@ export_volume_df =
 ```
 
 
-=====================================  
 
 ```{r message=FALSE}
 before_covid_import_value =
@@ -130,15 +130,6 @@ ggplotly(covid_export_value_plot)
 
 ```
 
-
-
-<!--
-Column {data-width=650}
------------------------------------------------------------------------
--->
-
-
-=====================================
 
 
 ```{r message=FALSE}
