@@ -13,7 +13,7 @@
 
 <title>Project Report</title>
 
-<script src="site_libs/header-attrs-2.11.3/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -341,11 +341,11 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Section 1</li>
     <li>
-      <a href="Spaghetti-before-after-COVID.html">Average monthly import values before (2018-2019) and after (2020-2021) Covid-19</a>
+      <a href="Spaghetti-before-after-COVID.html">Average monthly import value/volume before (2018-2019) and after (2020-2021) Covid-19</a>
     </li>
     <li class="dropdown-header">Section 2</li>
     <li>
-      <a href="Bar-before-after-COVID.html">Average export/import value/volume of each product type for 2018-2019 and 2020-2021</a>
+      <a href="Bar-before-after-COVID.html">Average export/import value/volume of each product type before (2018-2019) and after (2020-2021) Covid-19</a>
     </li>
     <li class="dropdown-header">Section 3</li>
     <li>
@@ -390,22 +390,26 @@ div.tocify {
 <h2>Project Motivation</h2>
 <p>The message Americans have been getting about inflation in recent months can be expressed in one word: frightening. Last year, as COVID-19 affected the world economy and disrupted trade flows, which also has had unprecedented effects on all dimensions of human life. Yet, it is certainly not our imagination: groceries do cost more now than prior to pandemic. The increase in food prices that we’ve seen over the past eight months is real and meaningful. According to the U.S. Bureau of Labor Statistics, food prices overall rose about 4.6% since September 2020.</p>
 <p>The effects of pandemic have been felt in almost every sector, and the agricultural market is no different. Our project intends to look deeper into the impact of Covid-19 on agricultural trade and how it’s affecting both supply and demand.</p>
+<p><br></p>
 </div>
 <div id="initial-questions" class="section level2">
 <h2>Initial Questions</h2>
 <p>Initially, we wanted to see if the emergence of Covid-19 pandemic has any effect on U.S. agricultural imports and exports(using the U.S. Agricultural Trade Data and Public COVID-19 daily report). In addition, to identify the top agricultural products that have been impacted by Covid-19 in foreign trade, and also whether Covid cases were interrelated with export and import volumes. We are also interested in looking at specifically if Covid-19 virus brings any changes to trade between China and U.S by looking at monthly data. As international trade being a victim of the current Covid-19 pandemic, we hoped that by exploring agricultural trade and Covid cases, we could see if agricultural sectors particularly were heavily affected.</p>
+<p><br></p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
 <div id="data-sources" class="section level3">
 <h3>Data Sources</h3>
 <p>In this project, we used the Foreign Agricultural Trade of the United States (FATUS) data of 2018 to 2021 from the USDA public government research service <a href="https://www.ers.usda.gov/data-products/foreign-agricultural-trade-of-the-united-states-fatus/u-s-agricultural-trade-data-update/">Agricaltural Trade Data Reference</a>. The data contains information on U.S. agricultural trade, values and volumes of high-value and bulk commodities, and top country export destinations and import sources for total U.S. agricultural trade. <br></p>
-<p>Also, the Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University: <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us">Covid-19 Data Reference</a>. <br></p>
+<p>Also, the Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University: <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us">Covid-19 Data Reference</a>.</p>
+<p><br></p>
 </div>
 <div id="data-cleaning" class="section level3">
 <h3>Data Cleaning</h3>
 <p><strong>Agricultural Trade Data:</strong> There were 4 Excel files each year from January 2018 to September 2021 : U.S. agricultural exports, U.S. agricultural imports, Top 10 U.S. agricultural export markets for wheat, corn, soybeans, and cotton by volume, and Top 10 sources of U.S. agricultural imports of fruits and vegetables by value. For each individual Excel files, we extracted and combined monthly data from each individual sheet in the file for both export/import values and volumes, and variable names were cleaned and renamed. Then we performed <code>pivot_longer()</code> to format the data in displaying export/import values and volumes for each product types filtered by year and month. Similarly, for the Top 10 agricultural import and export datasets, we extracted and combined monthly data for each commodity. We used <code>pivot_longer()</code> to format the data in displaying export/import values for each commodities and (import/export) countries, and filtered by year and month. Then, <code>rbind()</code> was used to combined all the different commodities for each year into one dataframe. Lastly, we combined all the years into one data for each file, resulting in total of 4 datasheets: Export (2018-2021), Import (2018-2021), Top 10 export (2018-2021), and Top 10 import (2018-2021) which will then be imported into R for later analysis.</p>
 <p><strong>Covid-19 Data:</strong> This data repository operated by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE) was imported into R and combined the daily report for covid cases in U.S. into one dataframe. Data and variable names were cleaned, missing values were removed, date variable was mutated and separated into two columns (Month and Year), and kept information on confirmed cases, active cases number of deaths, and number of recovered. Then, we sum up the cases by month using the sum function. Visualizations and graphs rely on count of cases was ploted as needed.</p>
+<p><br></p>
 </div>
 </div>
 <div id="exploratory-analysis" class="section level2">
@@ -420,11 +424,12 @@ div.tocify {
 </div>
 <div id="section-3.-importexport-change-with-china-under-the-pandemic" class="section level3">
 <h3>Section 3. Import/Export change with China under the pandemic</h3>
-<p>We used the data of top 10 U.S. export markets for soybeans, corn, wheat, and cotton (by volume) in each year from 2018 to 2021. Due to the complexity of original data, we only analyzed the largest oversea market of US, China. We calculated the average export volume of China for 2018-2019 and 2020-2021 and made a chart with country as x-axis, export volume as y-axis, and colored by before/after Covid-19. Since the data for top 10 import sources only has import value, doing the same analysis and visualization on this data set, we generated another plot with y-axis of import value. <a href="China_import---DB.html">View Plots</a></p>
+<p>We used the data of top 10 U.S. export markets for soybeans, corn, wheat, and cotton (by volume) in each year from 2018 to 2021. Due to the complexity of original data, we only analyzed the volume of export to China, which is a crucial and one of the largest oversea market of US. We calculated the total export volume of China for 2018-2019 and 2020-2021 and made a two-panel bar plot with country as x-axis, export volume as y-axis, and colored by commodity. Since the data for top 10 import sources only has import value, we did the same analysis and visualization on import dataset and generated another plot with y-axis of import value. The original dataset only contains data of countries with top 10 highest volume of export / value of import. If China is not in the top 10 list for certain commodity during certain month, then the data will not be shown in the plot. <a href="China_import---DB.html">View Plots</a></p>
 </div>
 <div id="section-4.-correlation-between-the-number-of-covid-19-cases-in-the-u.s.-and-the-volume-of-importexports" class="section level3">
 <h3>Section 4. Correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports</h3>
 <p>We plotted the correlation between the number of Covid-19 cases in the U.S. and the volume of import/exports with a regression line generated by linear regression, with the number of Covid-19 cases by month as x-axis and monthly volume of monthly imports/exports as y-axis. <a href="Cases-vs-volume---DB.html">View Plots</a></p>
+<p><br></p>
 </div>
 </div>
 <div id="discussions" class="section level2">
@@ -434,6 +439,7 @@ div.tocify {
 </div>
 <div id="insights" class="section level3">
 <h3>Insights</h3>
+<p><br></p>
 </div>
 </div>
 <div id="contributors" class="section level2">
