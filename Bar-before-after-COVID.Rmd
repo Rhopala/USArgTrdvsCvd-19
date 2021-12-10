@@ -75,60 +75,52 @@ covid_export_value_df =
 ```
 
 
-### Average Import Value Before/After Covid
+### Average Import Value Before/After Covid From 2018 To 2021
 
-<center>
+
 ```{r}
 covid_import_value_plot =  
   covid_import_value_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(
-    title = "Average U.S. Agricultural Import Values From 2018 To 2021 ",
     x = "Product Type",
-    y = "Average Import Values",
+    y = "Average Import Values"
   ) +
   theme(
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
-    axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 7, face = "bold"),
-    legend.key.size = unit(0.5,"cm"),
-    legend.text = element_text(size = 5),
-    legend.title = element_text(size = 6),
-    plot.title = element_text(size = 8,face = "bold")
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 6)
     ) 
 
-ggplotly(covid_import_value_plot)
+```
 
+<center>
+```{r}
+ggplotly(covid_import_value_plot)
 ```
 </center>
 
 
-### Average Export Value Before/After Covid
+### Average Export Value Before/After Covid From 2018 To 2021
 
-<center>
 ```{r}
 covid_export_value_plot =  
   covid_export_value_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(
-    title = "Average U.S. Agricultural Export Values From 2018 To 2021 ",
     x = "Product Type",
-    y = "Average Export Values",
+    y = "Average Export Values"
   ) +
   theme(
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
-    axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 7, face = "bold"),
-    legend.key.size = unit(0.5,"cm"),
-    legend.text = element_text(size = 5),
-    legend.title = element_text(size = 6),
-    plot.title = element_text(size = 8, face = "bold")
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 6)
     )
 
-ggplotly(covid_export_value_plot)
 
+```
+
+<center>
+```{r}
+ggplotly(covid_export_value_plot)
 ```
 </center>
 
@@ -169,57 +161,49 @@ covid_export_volume_df =
   rbind(before_covid_export_volume,after_covid_export_volume)
 ```
 
-## Average Import Volume Before/After Covid
+## Average Import Volume Before/After Covid From 2018 To 2021
 
-<center>
 ```{r}
 covid_import_volume_plot =  
   covid_import_volume_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(
-    title = "Average U.S. Agricultural Import Volumes From 2018 To 2021 ",
     x = "Product Type",
-    y = "Average Import Volumes",
+    y = "Average Import Volumes"
   ) +
   theme(
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
-    axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 7, face = "bold"),
-    legend.key.size = unit(0.5,"cm"),
-    legend.text = element_text(size = 5),
-    legend.title = element_text(size = 6),
-    plot.title = element_text(size = 8,face = "bold")
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 6)
     ) 
 
-ggplotly(covid_import_volume_plot)
 
+```
+
+<center>
+```{r}
+ggplotly(covid_import_volume_plot)
 ```
 </center>
 
-## Average Export Volume Before/After Covid
+## Average Export Volume Before/After Covid From 2018 To 2021
 
-<center>
 ```{r}
 covid_export_volume_plot =  
   covid_export_volume_df %>%
   ggplot(aes(x = product_type, y = average, fill = Covid_19)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(
-    title = "Average U.S. Agricultural Export Volumes From 2018 To 2021 ",
     x = "Product Type",
-    y = "Average Export Volumes",
+    y = "Average Export Volumes"
   ) +
   theme(
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 5),
-    axis.text.y = element_text(size = 5),
-    axis.title = element_text(size = 7, face = "bold"),
-    legend.key.size = unit(0.5,"cm"),
-    legend.text = element_text(size = 5),
-    legend.title = element_text(size = 6),
-    plot.title = element_text(size = 8, face = "bold")
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 6)
     )
 
+```
+
+<center>
+```{r}
 ggplotly(covid_export_volume_plot)
 ```
 </center>

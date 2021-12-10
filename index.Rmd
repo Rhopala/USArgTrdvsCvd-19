@@ -20,11 +20,11 @@ The effects of pandemic have been felt in almost every sector, and the agricultu
 
 ### Website Overview
 
-* A narrated screencast illustrating our project and website [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/Screencast.html).
+* **Screencast:** A narrated screencast illustrating our project and website [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/Screencast.html).
 
-* A written report with detailed explanation of our methods, findings and conclusions [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/project_report.html).
+* **Project Report:** A written report with detailed explanation of our methods, findings and conclusions [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/project_report.html).
 
-* Exploratory statistical analyses of the impacts of Covid-19 pandemic  on U.S. agricultural imports and exports with interactive visualizations.(Exploratory Analysis Tab)
+* **Exploratory Analysis:** Exploratory statistical analyses of the impacts of Covid-19 pandemic  on U.S. agricultural imports and exports with interactive visualizations.
 
 
 
