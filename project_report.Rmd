@@ -20,7 +20,7 @@ In this project, we used the Foreign Agricultural Trade of the United States (FA
 [Agricaltural Trade Data Reference](https://www.ers.usda.gov/data-products/foreign-agricultural-trade-of-the-united-states-fatus/u-s-agricultural-trade-data-update/). The data contains information on U.S. agricultural trade, values and volumes of high-value and bulk commodities, and top country export destinations and import sources for total U.S. agricultural trade. 
 <br>
 
-Also, the Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University:
+We also used the Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University:
 [Covid-19 Data Reference](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us).
 
 #### Data Cleaning

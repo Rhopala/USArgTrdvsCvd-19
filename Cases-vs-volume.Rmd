@@ -1,9 +1,6 @@
 ---
 title: "Covid Cases vs. Export/Import Volume"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: rows
-    vertical_layout: fill
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -165,6 +162,6 @@ combined_df %>%
     x = ~ confirmed_of_month, y = ~ import_sum, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)
 ```
 
-```{r}
+```{r message=FALSE}
 ggpubr::ggarrange(import_plot, export_plot)
 ```
