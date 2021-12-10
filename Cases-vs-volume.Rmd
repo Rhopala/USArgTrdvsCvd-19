@@ -1,7 +1,9 @@
 ---
 title: "Covid Cases vs. Export/Import Volume"
 output: 
-  flexdashboard::flex_dashboard
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}

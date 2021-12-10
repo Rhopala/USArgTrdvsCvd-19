@@ -2,7 +2,7 @@
 title: "Average monthly data before/after COVID"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
 ---
 
