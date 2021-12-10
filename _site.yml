@@ -10,10 +10,10 @@ navbar:
     - text: "Exploratory Analysis"
       menu:
       - text: "Section 1"
-      - text: "Average monthly import values before (2018-2019) and after (2020-2021) Covid-19"
+      - text: "Average monthly import value/volume before (2018-2019) and after (2020-2021) Covid-19"
         href: Spaghetti-before-after-COVID.html
       - text: "Section 2"
-      - text: "Average export/import value/volume of each product type for 2018-2019 and 2020-2021"
+      - text: "Average export/import value/volume of each product type before (2018-2019) and after (2020-2021) Covid-19"
         href: Bar-before-after-COVID.html
       - text: "Section 3"
       - text: "Import/Export change with China under the pandemic"
