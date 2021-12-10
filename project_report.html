@@ -386,38 +386,38 @@ div.tocify {
 </div>
 
 
-<div id="project-motivation" class="section level3">
-<h3>Project Motivation</h3>
+<div id="project-motivation" class="section level2">
+<h2>Project Motivation</h2>
 <p>The message Americans have been getting about inflation in recent months can be expressed in one word: frightening. Last year, as COVID-19 affected the world economy and disrupted trade flows, which also has had unprecedented effects on all dimensions of human life. Yet, it is certainly not our imagination: groceries do cost more now than prior to pandemic. The increase in food prices that we’ve seen over the past eight months is real and meaningful. According to the U.S. Bureau of Labor Statistics, food prices overall rose about 4.6% since September 2020.</p>
 <p>The effects of pandemic have been felt in almost every sector, and the agricultural market is no different. Our project intends to look deeper into the impact of Covid-19 on agricultural trade and how it’s affecting both supply and demand.</p>
 </div>
-<div id="initial-questions" class="section level3">
-<h3>Initial Questions</h3>
+<div id="initial-questions" class="section level2">
+<h2>Initial Questions</h2>
 <p>Initially, we wanted to see if the emergence of Covid-19 pandemic has any effect on U.S. agricultural imports and exports(using the U.S. Agricultural Trade Data and Public COVID-19 daily report). In addition, to identify the top agricultural products that have been impacted by Covid-19 in foreign trade, and also whether Covid cases were interrelated with export and import volumes. We are also interested in looking at specifically if Covid-19 virus brings any changes to trade between China and U.S by looking at monthly data. As international trade being a victim of the current Covid-19 pandemic, we hoped that by exploring agricultural trade and Covid cases, we could see if agricultural sectors particularly were heavily affected.</p>
 </div>
-<div id="data" class="section level3">
-<h3>Data</h3>
-<div id="data-sources" class="section level4">
-<h4>Data Sources</h4>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<div id="data-sources" class="section level3">
+<h3>Data Sources</h3>
 <p>In this project, we used the Foreign Agricultural Trade of the United States (FATUS) data of 2018 to 2021 from the USDA public government research service <a href="https://www.ers.usda.gov/data-products/foreign-agricultural-trade-of-the-united-states-fatus/u-s-agricultural-trade-data-update/">Agricaltural Trade Data Reference</a>. The data contains information on U.S. agricultural trade, values and volumes of high-value and bulk commodities, and top country export destinations and import sources for total U.S. agricultural trade. <br></p>
 <p>Also, the Public COVID-19 daily report from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University: <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us">Covid-19 Data Reference</a>. <br></p>
 </div>
-<div id="data-cleaning" class="section level4">
-<h4>Data Cleaning</h4>
-<p><strong>Agricultural Trade Data:</strong> There were 4 Excel files each year from January 2018 to September 2021 : U.S. agricultural exports, U.S. agricultural imports, Top 10 U.S. agricultural export markets for wheat, corn, soybeans, and cotton by volume, and Top 10 sources of U.S. agricultural imports of fruits and vegetables by value. For each individual Excel files, we extracted and combined monthly data from each individual sheet in the file for both export/import values and volumes, and variable names were cleaned and renamed. Then we performed <code>pivor_longer()</code> to format the data in displaying export/import values and volumes for each product types filtered by year and month. Similarly, for the Top 10 agricultural import and export datasets, we extracted and combined monthly data for each commodity. We used <code>pivor_longer()</code> to format the data in displaying export/import values for each commodities and (import/export) countries, and filtered by year and month. Then, <code>rbind()</code> was used to combined all the different commodities for each year into one dataframe. Lastly, we combined all the years into one data for each file, resulting in total of 4 datasheets: Export (2018-2021), Import (2018-2021), Top 10 export (2018-2021), and Top 10 import (2018-2021) which will then be imported into R for later analysis.</p>
+<div id="data-cleaning" class="section level3">
+<h3>Data Cleaning</h3>
+<p><strong>Agricultural Trade Data:</strong> There were 4 Excel files each year from January 2018 to September 2021 : U.S. agricultural exports, U.S. agricultural imports, Top 10 U.S. agricultural export markets for wheat, corn, soybeans, and cotton by volume, and Top 10 sources of U.S. agricultural imports of fruits and vegetables by value. For each individual Excel files, we extracted and combined monthly data from each individual sheet in the file for both export/import values and volumes, and variable names were cleaned and renamed. Then we performed <code>pivor_longer()</code> to format the data in displaying export/import values and volumes for each product types filtered by year and month. Similarly, for the Top 10 agricultural import and export datasets, we extracted and combined monthly data for each commodity. We used <code>pivot_longer()</code> to format the data in displaying export/import values for each commodities and (import/export) countries, and filtered by year and month. Then, <code>rbind()</code> was used to combined all the different commodities for each year into one dataframe. Lastly, we combined all the years into one data for each file, resulting in total of 4 datasheets: Export (2018-2021), Import (2018-2021), Top 10 export (2018-2021), and Top 10 import (2018-2021) which will then be imported into R for later analysis.</p>
 <p><strong>Covid-19 Data:</strong> This data repository operated by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE) was imported into R and combined the daily report for covid cases in U.S. into one dataframe. Data and variable names were cleaned, missing values were removed, date variable was mutated and separated into two columns (Month and Year), and kept information on confirmed cases, active cases number of deaths, and number of recovered. Then, we sum up the cases by month using the sum function. Visualizations and graphs rely on count of cases was ploted as needed.</p>
 </div>
 </div>
-<div id="exploratory-analysis" class="section level3">
-<h3>Exploratory Analysis</h3>
+<div id="exploratory-analysis" class="section level2">
+<h2>Exploratory Analysis</h2>
 </div>
-<div id="discussions" class="section level3">
-<h3>Discussions</h3>
-<div id="key-findings" class="section level4">
-<h4>Key Findings</h4>
+<div id="discussions" class="section level2">
+<h2>Discussions</h2>
+<div id="key-findings" class="section level3">
+<h3>Key Findings</h3>
 </div>
-<div id="insights" class="section level4">
-<h4>Insights</h4>
+<div id="insights" class="section level3">
+<h3>Insights</h3>
 </div>
 </div>
 <div id="contributors" class="section level2">

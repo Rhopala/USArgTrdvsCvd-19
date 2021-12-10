@@ -5,11 +5,7 @@ output:
 ---
 
 <center>
-<<<<<<< HEAD
-<br><br><img src="images/image_1.jpeg" alt="logo" style="width:70%; border:10px solid"><br>
-=======
-<br><br><img src="images/image_1.jpeg" alt="logo" style="width:80%; border:10px solid"><br>
->>>>>>> a8605b2ccf34e004a539c7256904e2c690bc7f70
+<br><br><img src="images/image_1.jpeg" alt="logo" style="width:60%; border:10px solid"><br>
 </center>
 
 <br>
