@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r message=FALSE}
+```{r, message=FALSE}
 ## Import data 
 covid = 
   read_csv("./data/covid_data_monthly.csv") %>% 
@@ -80,7 +80,7 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
 
 ## export vs. covid case 
 
-```{r message=FALSE}
+```{r, message=FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
 summary(export_fit)
 
@@ -122,7 +122,7 @@ combined_df %>%
 
 ## import vs. covid case 
 
-```{r message=FALSE}
+```{r, message=FALSE}
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
@@ -162,6 +162,6 @@ combined_df %>%
     x = ~ confirmed_of_month, y = ~ import_sum, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)
 ```
 
-```{r message=FALSE}
+```{r, message=FALSE}
 ggpubr::ggarrange(import_plot, export_plot)
 ```
