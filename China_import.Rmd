@@ -9,9 +9,6 @@ library(readxl)
 library(plotly)
 ```
 
-# Import from China
-
-## Combine data
 ```{r message=FALSE}
 import2018 <-
   read_csv("./data/top10_import_value_2018.csv")%>%
@@ -42,21 +39,16 @@ import2021 <-
   select(year, month, commodity, value)
 
 import_beforeCOVID <-
-  bind_rows(import2018, import2019)%>%
-  mutate(month = match(month, month.name))%>%
-  mutate(month = month.abb[month])
+  bind_rows(import2018, import2019)
 
 write_csv(import_beforeCOVID, "./data/cleaned data/Import from China beforeCOVID.csv")
 
 import_afterCOVID <-
-  bind_rows(import2020, import2021)%>%
-  mutate(month = match(month, month.name))%>%
-  mutate(month = month.abb[month])
+  bind_rows(import2020, import2021)
 
 write_csv(import_afterCOVID, "./data/cleaned data/Import from China afterCOVID.csv")
 ```
 
-## Plot
 ```{r message=FALSE}
 plot2_before <- 
   read_csv("./data/cleaned data/Import from China beforeCOVID.csv")%>%
@@ -83,8 +75,7 @@ plot2_after <-
   layout(xaxis = list(title = 'Month (2020-2021)',
                       categoryorder = "array",
                       categoryarray = ~ month),
-         legend = list(title = list(text='<b> Commodity </b>'),
-                       font = list(size = 8)))
+         legend = list(title = list(text='<b> Commodity </b>')))
 
 subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
   layout(title = 'Total Values of Monthly Import from China Before and After COVID',
@@ -92,9 +83,6 @@ subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
 
 ```
 
-# Export to China
-
-## Combine data
 ```{r message=FALSE}
 export2018 <-
   read_csv("./data/top10_export_volume_2018.csv")%>%
@@ -148,8 +136,6 @@ afterCOVID <-
 write_csv(afterCOVID, "./data/cleaned data/Export to China afterCOVID.csv")
 ```
 
-## Plot
-
 ```{r message=FALSE}
 plot_before <- 
   read_csv("./data/cleaned data/Export to China beforeCOVID.csv")%>%
@@ -180,9 +166,9 @@ plot_after <-
          yaxis = list(title = 'Sum of monthly volumes (Metric tons)'),
          legend = list(title=list(text='<b> Commodity </b>')))
 
-subplot(plot_before, plot_after, nrows = 2, shareX = TRUE, titleY = FALSE)%>%
+subplot(plot_before, plot_after,  shareX = TRUE, shareY = TRUE)%>%
   layout(title = 'Total Volume of Monthly Export to China Before and After COVID',
-         yaxis = list(title = 'Volumes (Metric tons) //////'))
+         yaxis = list(title = 'Volumes (Metric tons)'))
 
 ```
 
