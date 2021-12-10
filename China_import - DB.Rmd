@@ -1,9 +1,8 @@
 ---
 title: "Import from China & Export to China"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+  flexdashboard::flex_dashboad
+    
 ---
 
 ```{r echo=FALSE, message=FALSE}
@@ -12,9 +11,10 @@ library(readxl)
 library(plotly)
 ```
 
-# Import from China
+## Column 1
 
-## Combine data
+### values
+
 ```{r message=FALSE}
 import2018 <-
   read_csv("./data/top10_import_value_2018.csv")%>%
@@ -57,10 +57,7 @@ import_afterCOVID <-
   mutate(month = month.abb[month])
 
 write_csv(import_afterCOVID, "./data/cleaned data/Import from China afterCOVID.csv")
-```
 
-## Plot
-```{r message=FALSE}
 plot2_before <- 
   read_csv("./data/cleaned data/Import from China beforeCOVID.csv")%>%
   group_by(commodity)%>%
@@ -95,9 +92,11 @@ subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
 
 ```
 
-# Export to China
 
-## Combine data
+## Column 2
+
+### volumes
+
 ```{r message=FALSE}
 export2018 <-
   read_csv("./data/top10_export_volume_2018.csv")%>%
@@ -149,11 +148,7 @@ afterCOVID <-
   bind_rows(export2020, export2021)
 
 write_csv(afterCOVID, "./data/cleaned data/Export to China afterCOVID.csv")
-```
 
-## Plot
-
-```{r message=FALSE}
 plot_before <- 
   read_csv("./data/cleaned data/Export to China beforeCOVID.csv")%>%
   group_by(commodity)%>%
@@ -185,7 +180,7 @@ plot_after <-
 
 subplot(plot_before, plot_after, nrows = 2, shareX = TRUE, titleY = FALSE)%>%
   layout(title = 'Total Volume of Monthly Export to China Before and After COVID',
-         yaxis = list(title = 'Volumes (Metric tons) //////'))
+         yaxis = list(title = 'Volumes (Metric tons)'))
 
 ```
 

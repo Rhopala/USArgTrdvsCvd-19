@@ -2,8 +2,10 @@
 title: "Average monthly data before/after COVID"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    orientation: rows
+    vertical_layout: scroll
+    horizantal_layout: fill
+
 ---
 
 ```{r setup, include=FALSE}
@@ -25,10 +27,9 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-<!--
-Column {data-width=650}
------------------------------------------------------------------------
--->
+## row 1
+
+### import/export before and after COVID
 ```{r}
 export_value = read_excel("./data/export_value_combined.xlsx") %>%
   mutate(type = "export") %>%
@@ -64,10 +65,18 @@ value %>%
   facet_grid(. ~ type)
 
 ggplotly(va_BACVD)
+```
+
+## row 2
+
+### import/export for each year
+```{r}
 ggplotly(va_ECHY)
 ```
 
-## spaghetti plot of the average monthly export or import volumes before and after Covid-19
+## row3
+
+### spaghetti plot of the average monthly export or import volumes before and after Covid-19
 
 ```{r}
 export_volume = 
@@ -111,8 +120,9 @@ ggplotly(ex_volume_plot)
 ggplotly(im_volume_plot)
 ```
 
+## row 4
 
-## spaghetti plot of the average monthly export or import volumes for each year
+### spaghetti plot of the average monthly export or import volumes for each year
 
 ```{r}
 im_volume_plot_byyear = volume %>%
