@@ -5,7 +5,7 @@ output:
 ---
 
 <center>
-<br><br><img src="images/image_1.jpeg" alt="logo" style="width:50%; border:10px solid"><br>
+<br><br><img src="images/image_1.jpeg" alt="logo" style="width:70%; border:10px solid"><br>
 </center>
 
 <br>
