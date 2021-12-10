@@ -1,9 +1,6 @@
 ---
 title: "Average monthly data before/after COVID"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: rows
-    vertical_layout: fill
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +10,16 @@ library(dplyr)
 library(plotly)
 library(readxl)
 library(patchwork)
+
+theme_set(theme_minimal())
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 ```
 
 <!--
@@ -37,19 +44,24 @@ value = rbind(export_value, import_value) %>%
   group_by(covid_19, month, type) %>%
   mutate(avg_value = mean(monthly_total)) 
 
+va_BACVD =
 value %>%
   ggplot(aes(x = month, y = avg_value, color = covid_19, group = covid_19)) +
   geom_line() +
-  labs(y = "average value", title = "spaghetti plot of the average monthly export or import values before and after Covid-19") +
+  labs(y = "average value", title = "spaghetti plot of average monthly export/import values before/after Covid-19") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5)) +
   facet_grid(. ~ type)
 
+va_ECHY =
 value %>%
   ggplot(aes(x = month, y = monthly_total, color = year, group = year)) +
   geom_line() +
-  labs(y = "average value", title = "spaghetti plot of the average monthly export or import values for each year") +
+  labs(y = "average value", title = "spaghetti plot of the average monthly export/import values for each year") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5)) +
   facet_grid(. ~ type)
+
+ggplotly(va_BACVD)
+ggplotly(va_ECHY)
 ```
 
 ## spaghetti plot of the average monthly export or import volumes before and after Covid-19
@@ -89,15 +101,13 @@ ex_volume_plot = volume %>%
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
-ex_volume_plot + im_volume_plot 
+#vo_BACVD = 
+#  ex_volume_plot + im_volume_plot 
 
-volume %>%
-  ggplot(aes(x = month, y = monthly_total, color = year, group = year)) +
-  geom_line() +
-  labs(y = "average volume", title = "spaghetti plot of the average monthly export or import volumes for each year") +
-  theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5)) +
-  facet_grid(. ~ type)
+ggplotly(ex_volume_plot)
+ggplotly(im_volume_plot)
 ```
+
 
 ## spaghetti plot of the average monthly export or import volumes for each year
 
@@ -117,7 +127,8 @@ ex_volume_plot_byyear = volume %>%
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
-ex_volume_plot_byyear + im_volume_plot_byyear
+ggplotly(ex_volume_plot_byyear)
+ggplotly(im_volume_plot_byyear)
 ```
 
 

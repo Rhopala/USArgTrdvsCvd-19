@@ -1,7 +1,5 @@
 ---
 title: "Import from China & Export to China"
-author: "Zoey Zhao"
-date: "12/7/2021"
 output: html_document
 ---
 
