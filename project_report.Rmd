@@ -12,7 +12,7 @@ The message Americans have been getting about inflation in recent months can be 
 The effects of pandemic have been felt in almost every sector, and the agricultural market is no different. Our project intends to look deeper into the impact of Covid-19 on agricultural trade and how it's affecting both supply and demand.
 
 ## Initial Questions
-We would like to use data visualization with graphs to analyze the effect of Covid-19 pandemic on U.S. agricultural imports and exports including finding the top 3 agricultural products that have been affected most by Covid-19 in import and export. We are also interested in finding the impact of Covid-19 on top 10 export countries for wheat, corn, soybeans, and cotton from the U.S.
+Initially, we wanted to see if the emergence of Covid-19 pandemic has any effect on U.S. agricultural imports and exports(using the U.S. Agricultural Trade Data and Public COVID-19 daily report). In addition, to identify the top agricultural products that have been impacted by Covid-19 in foreign trade, and also whether Covid cases were interrelated with export and import volumes. We are also interested in looking at specifically if Covid-19 virus brings any changes to trade between China and U.S by looking at monthly data. As international trade being a victim of the current Covid-19 pandemic, we hoped that by exploring agricultural trade and Covid cases, we could see if agricultural sectors particularly were heavily affected. 
 
 ## Data
 ### Data Sources
