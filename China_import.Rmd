@@ -84,6 +84,8 @@ subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
 
 ```
 
+There is no obvious difference between values of import in 2018-2019 and in 2020-2021 for all three types of commodities. In the 2020-2021 plot, it is obvious that October, November, and December have less total values of import. This is because the dataset of top 10 sources of the U.S. agricultural import in 2021 only contains monthly values of import from January to October. 
+
 ```{r message=FALSE}
 export2018 <-
   read_csv("./data/top10_export_volume_2018.csv")%>%
@@ -173,7 +175,7 @@ subplot(plot_before, plot_after,  shareX = TRUE, shareY = TRUE)%>%
 
 ```
 
-
+The export volume of corn to China increased after Covid-19, while the export volume of cotton decreased. For the other two type of commodities, China is not in the top 10 export market of wheat and soybean in 2018-2019, but China is in the top 10 export markets of wheat and soybean in 2020-2021. In general, volumes of export of corn, soybean, and wheat to China all ascended after Covid-19. Only the volume of cotton decreased after Covid-19. 
 
 
 
