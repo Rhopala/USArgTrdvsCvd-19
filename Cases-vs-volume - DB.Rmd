@@ -18,6 +18,17 @@ knitr::opts_chunk$set(
   fig.height = 6,
   out.width = "90%"
 )
+
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 ```
 
 
@@ -63,7 +74,9 @@ com =
 covid %>% 
   ggplot(aes(x = month, y = Confirmed_of_Month, color = year)) + 
   geom_line(aes(group = year)) +
-  geom_point(size = 1.5)
+  geom_point(size = 1.5) +
+  xlab("Month") +
+  ylab("Confirmed cases per month")
 
 ggplotly(com)
 ```
@@ -78,7 +91,9 @@ export_volume_df %>%
   ggplot(aes(x = month, y = sum_of_export, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
+  xlab("Month") +
+  ylab("Sum of export volume (metric tons)")
 
 ggplotly(soe)
 ```
@@ -94,7 +109,9 @@ import_volume_df %>%
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  xlab("Month") +
+  ylab("Sum of import volume (metric tons)")
 
 ggplotly(soi)
 ```
@@ -137,18 +154,20 @@ export_plot = combined_df %>%
   group_by(month, year, confirmed_of_month) %>% 
   summarize(export_sum = sum(export_volume)) %>% 
 ggplot(aes(x = confirmed_of_month, y = export_sum)) +
-  geom_point(alpha = 0.5) +
+  geom_point() +
   scale_y_continuous() +
   geom_smooth(se = F, color = "red", method = "lm", size = 1, linetype = 2) +
   labs(title = "Covid Cases vs. Export Volume", 
-       x = "Covid Cases", 
-       y = "Export Volume")
+       x = "Covid cases", 
+       y = "Export volume (metric tons")
 
 combined_df %>% 
   mutate(
     text_label = str_c("Confirmed Cases: $", confirmed_of_month, "\nExport Volume: ", export_volume)) %>% 
   plot_ly(
-    x = ~ confirmed_of_month, y = ~ export_volume, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)
+    x = ~ confirmed_of_month, y = ~ export_volume, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)%>%
+  layout(xaxis = list(title = "Covid cases per month"), 
+       yaxis = list(title = "Sum of import volume per month (metric tons)"))
 
 
 ```

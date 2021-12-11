@@ -45,16 +45,12 @@ import2021 <-
   select(year, month, commodity, value)
 
 import_beforeCOVID <-
-  bind_rows(import2018, import2019)%>%
-  mutate(month = match(month, month.name))%>%
-  mutate(month = month.abb[month])
+  bind_rows(import2018, import2019)
 
 write_csv(import_beforeCOVID, "./data/cleaned data/Import from China beforeCOVID.csv")
 
 import_afterCOVID <-
-  bind_rows(import2020, import2021)%>%
-  mutate(month = match(month, month.name))%>%
-  mutate(month = month.abb[month])
+  bind_rows(import2020, import2021)
 
 write_csv(import_afterCOVID, "./data/cleaned data/Import from China afterCOVID.csv")
 
@@ -178,7 +174,7 @@ plot_after <-
          yaxis = list(title = 'Sum of monthly volumes (Metric tons)'),
          legend = list(title=list(text='<b> Commodity </b>')))
 
-subplot(plot_before, plot_after, nrows = 2, shareX = TRUE, titleY = FALSE)%>%
+subplot(plot_before, plot_after, shareX = TRUE, shareY = TRUE)%>%
   layout(title = 'Total Volume of Monthly Export to China Before and After COVID',
          yaxis = list(title = 'Volumes (Metric tons)'))
 
