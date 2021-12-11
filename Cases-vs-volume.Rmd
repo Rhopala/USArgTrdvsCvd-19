@@ -55,7 +55,13 @@ covid %>%
     y = "Confirmed cases per month",
     color = "Year"
   )
+```
 
+From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021. In which for 2020, the plot follows a pattern of a exponential graph. On the other hand, the trend for 2021 Covid-19 cases seem to follow a square root function.
+
+
+```{r, message= FALSE}
+## visualize total export volume each month
 export_volume_df = 
   read_csv("./data/cleaned data/export_volume_combined.csv") %>% 
   mutate(month = as.factor(month),
@@ -80,7 +86,13 @@ exportvolume_plot = export_volume_df %>%
 
 animate(exportvolume_plot, duration = 10, renderer = gifski_renderer())
 
+```
 
+Interestly, we see that in 2020 total export volume steeply increases from July to December by about 71.8%. While in 2021, the overall export volume from January through September decreases by 55.7%. In addtion, in 2018 and 2019, both total export volume decrease throughout the year from January to December by 7.19% and 11.4% respectively. We can also see that, total export seems to decline during the winter for both 2018 and 2019, especially in November and December.
+
+```{r, message=FALSE}
+
+## visualize total import volume each month
 import_volume_df = 
   read_csv("./data/cleaned data/import_volume_combined.csv") %>% 
   mutate(month = as.factor(month),
@@ -88,7 +100,7 @@ import_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-importvolume_plot = import_volume_df %>% 
+import_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_import = sum(import_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
@@ -103,18 +115,19 @@ importvolume_plot = import_volume_df %>%
   ) +
   transition_reveal(as.integer(month))
 
-animate(importvolume_plot, duration = 10, renderer = gifski_renderer())
-
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
   reduce(left_join, by = c("year", "month"), all = TRUE) %>%
   janitor::clean_names() %>% 
   rename("export_product_type" = "product_type_x",
          "import_product_type" = "product_type_y") 
-
 ```
 
-From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021.
+From the import graph, we see that for all 4 years, US monthly import volumes tend to increase sharply from February to March, and March seems to be more so like a peak for each year, except for 2021 which April is the peak for total import. In addition, we see a gradually decreasing function after March, with a noticeable increase from September to October. 
 
+
+## Data Table 
+
+The interactive data table below displays the combined dataset for the covid cases data, export and import data.
 
 ```{r interactive_data_table, fig.align='center'}
 combined_df %>%
