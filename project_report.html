@@ -13,7 +13,7 @@
 
 <title>Project Report</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.11.3/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -435,14 +435,35 @@ div.tocify {
 <p><br></p>
 </div>
 </div>
-<div id="discussions" class="section level2">
-<h2>Discussions</h2>
-<div id="section-3" class="section level3">
-<h3>Section 3</h3>
-<p>There is no obvious difference between values of import in 2018-2019 and in 2020-2021 for all three types of commodities. In the 2020-2021 plot, it is obvious that October, November, and December have less total values of import. This is because the dataset of top 10 sources of the U.S. agricultural import in 2021 only contains monthly values of import from January to October. Therefore, by exploring the data we obtained, we did not see significant effect of Covid-19 on values of import from China. One possible explanation for this is China has quickly control the Covid-19 epidemic within a few months at the beginning of 2020, so fruit and vegetable markets of China were mostly stable and were hardly influenced by Covid-19.</p>
-<p>The export volume of corn to China increased after Covid-19, while the export volume of cotton decreased. For the other two type of commodities, China is not in the top 10 export market of wheat and soybean in 2018-2019, but China is in the top 10 export markets of wheat and soybean in 2020-2021. In general, volumes of export of corn, soybean, and wheat to China all ascended after Covid-19. Only the volume of cotton decreased after Covid-19. One possible explanation for this is that the exchange rate of the U.S. dollar has been continuously decreasing after Covid-19, so commodities from U.S. were in cheaper prices for China to import comparing with previous years, which consequently resulting in an increase in import volume from the U.S. (i.e. the export volume from the U.S. to China). The exception of cotton is maybe because of the Xinjiang cotton incident.</p>
+<div id="key-findings" class="section level2">
+<h2>Key Findings</h2>
+<ul>
+<li><p>Covid cases gradually increase in both 2020 and 2021.</p></li>
+<li><p>The Covid-19 cases of 2020 follow an exponential pattern.</p></li>
+<li><p>The trend for 2021 Covid-19 cases seem to follow a square root function.</p></li>
+<li><p>Total export steeply increases from July to December in 2020, while decreased significantly from January through September in 2021.</p></li>
+<li><p>Import and export data shows a rough seasonal pattern: imports of each year peak at spring, exports peak at spring and late autumn.</p></li>
+<li><p>No apparent association between covid cases and export or import. Covid Cases vs. Import Volume shows a slight positive relationship, while Covid Cases vs. Export Volume shows a relative negative association.</p></li>
+<li><p>import and export both slightly increased after Covid-19 pandemic.</p></li>
+<li><p>export volume of sorghum is especially prominent</p></li>
+<li><p>Volumes of imports from China do not change much after Covid-19. Volumes of export of corn, soybean, and wheat to China all ascended. Only the volume of cotton export decreased after Covid-19.</p></li>
+<li><p>It is difficult to make an acceptable model of U.S. agricultural imports and exports using only the number of COVID-19 cases as an indicator.</p></li>
+</ul>
 <p><br></p>
 </div>
+<div id="discussions" class="section level2">
+<h2>Discussions</h2>
+<p>For the Covid-19 monthly confirmed cases, we found it increases since April 2020 till present, but the increasing rate has fallen in 2021, which is conform to US COVID Vaccination timeline (<a href="https://ourworldindata.org/covid-vaccinations?country=USA">reference</a> ).</p>
+<p>The seasonal pattern of agricultural import and export might be due to the characteristics that agricultural products yield are naturally more seasonal. In the spring and summer season, which are not primarily the harvest season, countries and regions had consumed plenty of their own produced goods, therefore, the market activity seems to be more active.(There were peaks observed for both import and export.)</p>
+<p>As for the difference analysis of each product category, we found that the majority of products were not significantly affected by the epidemic (import and export increase naturally every year, so the increase might not be attributed to the epidemic). For example in China, America’s largest market for agricultural imports and exports, we did not find a significant effect of Covid-19 on values of import from China. One possible explanation for this is that China responded quickly in controlling the Covid-19 pandemic within a few months in the beginning of 2020, so fruit and vegetable markets in China were mostly stable and were hardly influenced by Covid-19. However, the volume of export to China did change remarkably for some particular categories. The export volume of corn to China increased after Covid-19, while the export volume of cotton decreased. The former maybe because corn is an important ingredient for alcohol (demand has soared in quarantine campaigns) and the latter maybe because of the Xinjiang cotton incident. Due to the boycott of Xinjiang cotton by other countries, the Chinese market tended to consume more of its own cotton, and the demand for imports fell.</p>
+<p>For the data of import and export to China in general, volumes of export of corn, soybean, and wheat to China all ascended after Covid-19. One possible explanation for this is that the exchange rate of the U.S. dollar has been continuously decreasing after Covid-19, so commodities from U.S. were in cheaper prices for China to import comparing with previous years, which consequently resulting in an increase in import volume from the U.S. (i.e. the export volume from the U.S. to China).</p>
+<p>Finally, our attempt to use Covid-19 cases to predict and import/export data failed to have any meaningful quality measures. Large number of outliers showing the Covid-19 cases itself as an indicator is not enough for plausible modeling. Further research may be needed in order to provide more accurate predictions of the model. We also need to consider other potential variables such as the economic changes of other countries, climate change, government policies or restrictions, etc. that could affect US import/export.</p>
+<p><br></p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Our data analysis found some development regularity of data and the characteristics of agricultural import and export in the US, but could not reflect the specific relationship between these two statistics. So far, all of our interpretations of data analysis results are conjecture.</p>
+<p><br></p>
 </div>
 <div id="contributors" class="section level2">
 <h2>Contributors</h2>
