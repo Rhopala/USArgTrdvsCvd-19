@@ -6,7 +6,7 @@ navbar:
     - text: "Screencast"
       href: Screencast.html
     - text: "Data Explorer"
-      href: https://anmei18.shinyapps.io/data_explorer
+      href: https://rhopala.shinyapps.io/argvscvdtables/
     - text: "Project Report"
       href: project_report.html
     - text: "Exploratory Analysis"
