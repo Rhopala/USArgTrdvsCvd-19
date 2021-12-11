@@ -183,11 +183,10 @@ combined_df %>%
 
 ## Import Volume vs. Covid Cases 
 
-<<<<<<< HEAD
+
 ```{r, message=FALSE, echo = FALSE}
-=======
-```{r, message=FALSE}
->>>>>>> f69cfbe1a56a80e1907aaee3b9699822f9f3bc7f
+
+
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
