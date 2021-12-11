@@ -112,7 +112,11 @@ combined_df %>%
          "Monthly Confirmed Cases" = confirmed_of_month,
          "Number of Deaths" = deaths_of_month,
          "Number of Recovered" = recovered_of_month,
-         "Number of Active Cases" = active_of_month) %>% 
+         "Number of Active Cases" = active_of_month, 
+         "Export Product Type" = export_product_type,
+         "Export Volume" = export_volume, 
+         "Import Product Type" = import_product_type, 
+         "Import Volume" = import_volume) %>% 
 DT::datatable(., class = 'compact',
               rownames = FALSE,
               caption = 'Table')
