@@ -47,6 +47,7 @@ value %>%
   geom_line() +
   labs(y = "average value", title = "spaghetti plot of average monthly export/import values before/after Covid-19") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5)) +
+  theme(plot.title = element_text(size = 10)) +
   facet_grid(. ~ type)
 
 va_ECHY =
@@ -55,6 +56,7 @@ value %>%
   geom_line() +
   labs(y = "average value", title = "spaghetti plot of the average monthly export/import values for each year") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5)) +
+  theme(plot.title = element_text(size = 12)) +
   facet_grid(. ~ type)
 
 ggplotly(va_BACVD)
