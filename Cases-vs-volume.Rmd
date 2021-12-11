@@ -55,7 +55,13 @@ covid %>%
     y = "Confirmed cases per month",
     color = "Year"
   )
+```
 
+From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021. In which for 2020, the plot follows a pattern of a exponential graph. On the other hand, the trend for 2021 Covid-19 cases seem to follow a square root function.
+
+
+```{r, message= FALSE}
+## visualize total export volume each month
 export_volume_df = 
   read_csv("./data/cleaned data/export_volume_combined.csv") %>% 
   mutate(month = as.factor(month),
@@ -80,7 +86,13 @@ exportvolume_plot = export_volume_df %>%
 
 animate(exportvolume_plot, duration = 10, renderer = gifski_renderer())
 
+```
 
+Interestly, we see that in 2020 total export volume steeply increases from July to December by about 71.8%. While in 2021, the overall export volume from January through September decreases by 55.7%. In addtion, in 2018 and 2019, both total export volume decrease throughout the year from January to December by 7.19% and 11.4% respectively. We can also see that, total export seems to decline during the winter for both 2018 and 2019, especially in November and December.
+
+```{r, message=FALSE}
+
+## visualize total import volume each month
 import_volume_df = 
   read_csv("./data/cleaned data/import_volume_combined.csv") %>% 
   mutate(month = as.factor(month),
@@ -88,7 +100,7 @@ import_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-importvolume_plot = import_volume_df %>% 
+import_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_import = sum(import_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
@@ -103,18 +115,19 @@ importvolume_plot = import_volume_df %>%
   ) +
   transition_reveal(as.integer(month))
 
-animate(importvolume_plot, duration = 10, renderer = gifski_renderer())
-
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
   reduce(left_join, by = c("year", "month"), all = TRUE) %>%
   janitor::clean_names() %>% 
   rename("export_product_type" = "product_type_x",
          "import_product_type" = "product_type_y") 
-
 ```
 
-From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021.
+From the import graph, we see that for all 4 years, US monthly import volumes tend to increase sharply from February to March, and March seems to be more so like a peak for each year, except for 2021 which April is the peak for total import. In addition, we see a gradually decreasing function after March, with a noticeable increase from September to October. 
 
+
+## Data Table 
+
+The interactive data table below displays the combined dataset for the covid cases data, export and import data.
 
 ```{r interactive_data_table, fig.align='center'}
 combined_df %>%
@@ -167,8 +180,13 @@ ggplot(aes(x = confirmed_of_month, y = export_sum)) +
   geom_smooth(se = F, color = "red", method = "lm", size = 1, linetype = 2) +
   labs(title = "Covid Cases vs. Export Volume", 
        x = "Covid Cases", 
-       y = "Export Volume (metric tons)")
+       y = "Sum of Export Volume (metric tons)")
 
+```
+
+From the density plot, we see that the plot follows a bimodal distribution, with the highest peak roughly around 1600-1650, and another peak at 2400-2450.
+
+```{r, message=FALSE}
 combined_df %>% 
   mutate(
     text_label = str_c("Confirmed Cases: $", confirmed_of_month, "\nExport Volume: ", export_volume)) %>% 
@@ -177,8 +195,9 @@ combined_df %>%
   layout(xaxis = list(title = "Confrimed cases per month"),
          yaxis = list(title = "Export volume (metirc tons)"))
 
-
 ```
+
+This plotly graph illustrates the export volume in metric tons (y) vs. confirmed cases per month (x) categorized by month, which we can see that there are many outliers shown in the graph.
 
 
 ## Import Volume vs. Covid Cases 
@@ -220,6 +239,12 @@ import_plot = combined_df %>%
        x = "Covid Cases", 
        y = "Import Volume (metric tons)")
   
+```
+
+Similarly, from the import density plot, we see that the plot follows a bimodal distribution with skewed to the right. The graph has the highest peak at around 300, and another peak at 330.
+
+
+```{r, message=FALSE}
 
 combined_df %>% 
   group_by(month, year, confirmed_of_month) %>% 
@@ -232,6 +257,10 @@ combined_df %>%
        yaxis = list(title = "Sum of import volume per month (metric tons)"))
 ```
 
-```{r, message=FALSE, echo = FALSE}
+This plotly graph illustrates the export volume in metric tons (y) vs. confirmed cases per month (x) categorized by month, which we can see that there are many outliers shown in the graph.
+
+```{r, message=FALSE, fig.width=8, fig.height=5}
 ggpubr::ggarrange(import_plot, export_plot)
 ```
+
+Based on our exploratory analysis, we found no apparent association between covid cases and export or between covid cases and import. Covid Cases vs. Import Volume shows a slight positive relationship, while Covid Cases vs. Export Volume shows a relative negative association. 
