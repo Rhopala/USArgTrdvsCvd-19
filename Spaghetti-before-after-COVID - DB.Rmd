@@ -76,7 +76,7 @@ ggplotly(va_ECHY)
 
 ## row3
 
-### spaghetti plot of the average monthly export or import volumes before and after Covid-19
+### average monthly export volumes before and after Covid-19
 
 ```{r}
 export_volume = 
@@ -113,16 +113,18 @@ ex_volume_plot = volume %>%
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
-#vo_BACVD = 
-#  ex_volume_plot + im_volume_plot 
-
 ggplotly(ex_volume_plot)
+```
+
+### average monthly import volumes before and after Covid-19
+
+```{r}
 ggplotly(im_volume_plot)
 ```
 
 ## row 4
 
-### spaghetti plot of the average monthly export or import volumes for each year
+### average monthly export volumes for each year
 
 ```{r}
 im_volume_plot_byyear = volume %>%
@@ -141,6 +143,11 @@ ex_volume_plot_byyear = volume %>%
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
 ggplotly(ex_volume_plot_byyear)
+```
+
+### average monthly import volumes for each year
+
+```{r}
 ggplotly(im_volume_plot_byyear)
 ```
 
