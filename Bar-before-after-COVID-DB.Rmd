@@ -28,19 +28,19 @@ scale_fill_discrete = scale_fill_viridis_d
 import_value_df = 
   read_csv("data/cleaned data/import_value_combined.csv") %>% 
   mutate(
-    product_type = recode(product_type, "Vegetables & preparations" = "Vegetables and preparations","Fruits & preparations" = "Fruits and preparations", "Grains & feeds" = "Grains and feeds","Beef & veal" = "Beef and veal", "Coffee & products" = "Coffee and products", "Cotton & linters" = "Cotton and linters","Cut flowers & nursery stock" = "Cut flowers and nursery stock","Oilseeds & products" = "Oilseeds and products","Red meats & products" = "Red meats and products", "Sugar & related products" = "Sugar and related products","Tree nuts & preparations" = "Tree nuts and preparations")
+    product_type = recode(product_type, "Vegetables & preparations" = "Vegetables and preparations","Fruits & preparations" = "Fruits and preparations", "Grains & feeds" = "Grains and feeds","Beef & veal" = "Beef and veal", "Coffee & products" = "Coffee and products", "Cotton & linters" = "Cotton and linters","Cut flowers & nursery stock" = "Cut flowers and nursery stock","Oilseeds & products" = "Oilseeds and products","Red meats & products" = "Red meats and products", "Sugar & related products" = "Sugar and related products","Tree nuts & preparations" = "Tree nuts and preparations","Cocoa & products" = "Cocoa and products","Cattle & calves" = "Cattle and calves")
   )
 
 export_value_df = 
   read_csv("data/cleaned data/export_value_combined.csv") %>% 
   mutate(
-    product_type = recode(product_type,"Cotton & linters" = "Cotton and linters","Red meats & products" = "Red meats and products","Tree nuts & preparations" = "Tree nuts and preparations","Grains & feeds" = "Grains and feeds", "Hides & skins" = "Hides and skins","Poultry meats & products" = "Poultry meats and products","Fruits & products" = "Fruits and products","Sugar & tropical products" = "Sugar and tropical products","Animal feeds & oil meal" = "Animal feeds and oil meal")
+    product_type = recode(product_type,"Cotton & linters" = "Cotton and linters","Red meats & products" = "Red meats and products","Tree nuts & preparations" = "Tree nuts and preparations","Grains & feeds" = "Grains and feeds", "Hides & skins" = "Hides and skins","Poultry meats & products" = "Poultry meats and products","Fruits & products" = "Fruits and products","Sugar & tropical products" = "Sugar and tropical products","Animal feeds & oil meal" = "Animal feeds and oil meal", "Vegetables & products" = "Vegetables and products")
   )
 
 import_volume_df = 
   read_csv("data/cleaned data/import_volume_combined.csv") %>% 
   mutate(
-    product_type = recode(product_type, "Vegetables & preparations" ="Vegetables and preparations","Fruits & preparations" = "Fruits and preparations", "Grains & feeds" = "Grains and feeds","Beef & veal" = "Beef and veal", "Coffee & products" = "Coffee and products", "Cotton & linters" =  "Cotton and linters","Cut flowers & nursery stock" = "Cut flowers and nursery stock","Oilseeds & products" = "Oilseeds and products","Red meats & products" = "Red meats and products", "Sugar & related products" = "Sugar and related products","Tree nuts & preparations" = "Tree nuts and preparations")
+    product_type = recode(product_type, "Vegetables & preparations" ="Vegetables and preparations","Fruits & preparations" = "Fruits and preparations", "Grains & feeds" = "Grains and feeds","Beef & veal" = "Beef and veal", "Coffee & products" = "Coffee and products", "Cotton & linters" =  "Cotton and linters","Cut flowers & nursery stock" = "Cut flowers and nursery stock","Oilseeds & products" = "Oilseeds and products","Red meats & products" = "Red meats and products", "Sugar & related products" = "Sugar and related products","Tree nuts & preparations" = "Tree nuts and preparations","Cocoa & products" = "Cocoa and products", "Cattle & calves" = "Cattle and calves")
   )
 
 export_volume_df = 
