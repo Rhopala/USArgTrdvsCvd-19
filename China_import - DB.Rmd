@@ -1,7 +1,7 @@
 ---
 title: "Import from China & Export to China"
 output: 
-  flexdashboard::flex_dashboad
+  flexdashboard::flex_dashboard
     
 ---
 
