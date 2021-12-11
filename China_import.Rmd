@@ -75,7 +75,8 @@ plot2_after <-
   layout(xaxis = list(title = 'Month (2020-2021)',
                       categoryorder = "array",
                       categoryarray = ~ month),
-         legend = list(title = list(text='<b> Commodity </b>')))
+         legend = list(title = list(text='<b> Commodity </b>'),
+                       font = list(size = 8)))
 
 subplot(plot2_before, plot2_after, shareX = TRUE, shareY = TRUE)%>%
   layout(title = 'Total Values of Monthly Import from China Before and After COVID',
