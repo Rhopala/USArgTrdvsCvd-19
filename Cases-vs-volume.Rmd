@@ -180,7 +180,7 @@ ggplot(aes(x = confirmed_of_month, y = export_sum)) +
   geom_smooth(se = F, color = "red", method = "lm", size = 1, linetype = 2) +
   labs(title = "Covid Cases vs. Export Volume", 
        x = "Covid Cases", 
-       y = "Sum of Export Volume (metric tons)")
+       y = "Export Volume (metric tons)")
 
 ```
 
