@@ -6,6 +6,8 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)
+library(gganimate)
+
 
 library(plotly)
 
@@ -61,7 +63,7 @@ export_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-export_volume_df %>% 
+exportvolume_plot = export_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_export = sum(export_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_export, color = year)) + 
@@ -73,8 +75,11 @@ export_volume_df %>%
     x = "Month",
     y = "Total export volume (metric tons)",
     color = "Year"
-  )
-  
+  ) +
+  transition_reveal(as.integer(month))
+
+animate(exportvolume_plot, duration = 10, renderer = gifski_renderer())
+
 
 import_volume_df = 
   read_csv("./data/cleaned data/import_volume_combined.csv") %>% 
@@ -105,7 +110,10 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
 
 ```
 
-```{r interactive_data_table}
+From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021.
+
+
+```{r interactive_data_table, fig.align='center'}
 combined_df %>%
   rename(Month = month,
          Year = year,
