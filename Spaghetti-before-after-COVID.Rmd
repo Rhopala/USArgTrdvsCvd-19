@@ -22,10 +22,7 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-<!--
-Column {data-width=650}
------------------------------------------------------------------------
--->
+
 ```{r}
 export_value = read_excel("./data/export_value_combined.xlsx") %>%
   mutate(type = "export") %>%
@@ -61,8 +58,15 @@ value %>%
   facet_grid(. ~ type)
 
 ggplotly(va_BACVD)
+```
+
+In general, years after covid-19 have a higher export and import values than years before covid-19 in all months. There seems to be a seasonal pattern that February and June to September have lower export and import values than other months. 
+
+```{r}
 ggplotly(va_ECHY)
 ```
+
+Be specific in each year, there is an obvious decline from March to April in 2020 for both export and import. There is an increasing trend through June to December in 2020 for both export and import. The values in year 2021 are much higher than all other years, but have a rapid decline after May in the export value. 
 
 ## spaghetti plot of the average monthly export or import volumes before and after Covid-19
 
@@ -101,12 +105,14 @@ ex_volume_plot = volume %>%
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
-#vo_BACVD = 
-#  ex_volume_plot + im_volume_plot 
+fig1 = ggplotly(ex_volume_plot)
+fig2 = ggplotly(im_volume_plot)
+subplot(fig1, fig2, titleY = TRUE, titleX = TRUE) %>% 
+  layout(title = 'Export and Import')
 
-ggplotly(ex_volume_plot)
-ggplotly(im_volume_plot)
 ```
+
+In general, years after covid-19 have a higher export and import volumes than years before covid-19 in most months. There seems to be a clear seasonal pattern that February and June to September have lower export and import values than other months. The annual US import volume is about 8 times lesser than export volume. 
 
 
 ## spaghetti plot of the average monthly export or import volumes for each year
@@ -127,8 +133,12 @@ ex_volume_plot_byyear = volume %>%
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 70, vjust = 0.5, hjust = 0.5))
 
-ggplotly(ex_volume_plot_byyear)
-ggplotly(im_volume_plot_byyear)
+fig3 = ggplotly(ex_volume_plot_byyear)
+fig4 = ggplotly(im_volume_plot_byyear)
+subplot(fig3, fig4, titleY = TRUE, titleX = TRUE) %>% 
+  layout(title = 'Export and Import')
 ```
+
+Be specific in each year for export volumes, there is a decline through May to July in 2020 and follows with a rapid increase until December. In 2021, there is a rapid decreasing trend and the export volume hits the lowest point in September. For the import volumes, there is no significant different between each year. 
 
 
