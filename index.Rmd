@@ -20,7 +20,7 @@ International trade is an essential part of agricultural markets in the United S
 
 * **Screencast:** A narrated screencast illustrating our project and website [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/Screencast.html).
 
-* **Data Explorer:** An interactive table of our datasets.
+* **Data Explorer:** An interactive table of our datasets [(here)](https://rhopala.shinyapps.io/argvscvdtables/).
 
 * **Project Report:** A written report with detailed explanation of our methods, findings and conclusions [(here)](https://rhopala.github.io/USArgTrdvsCvd-19/project_report.html).
 

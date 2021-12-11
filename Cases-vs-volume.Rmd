@@ -6,6 +6,8 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)
+library(gganimate)
+
 
 library(plotly)
 
@@ -31,7 +33,7 @@ scale_fill_discrete = scale_fill_viridis_d
 ```
 
 
-```{r, message=FALSE, echo = FALSE}
+```{r, message=FALSE}
 ## Import data 
 covid = 
   read_csv("./data/covid_data_monthly.csv") %>% 
@@ -61,7 +63,7 @@ export_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-export_volume_df %>% 
+exportvolume_plot = export_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_export = sum(export_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_export, color = year)) + 
@@ -73,8 +75,11 @@ export_volume_df %>%
     x = "Month",
     y = "Total export volume (metric tons)",
     color = "Year"
-  )
-  
+  ) +
+  transition_reveal(as.integer(month))
+
+animate(exportvolume_plot, duration = 10, renderer = gifski_renderer())
+
 
 import_volume_df = 
   read_csv("./data/cleaned data/import_volume_combined.csv") %>% 
@@ -83,7 +88,7 @@ import_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-import_volume_df %>% 
+importvolume_plot = import_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_import = sum(import_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
@@ -95,7 +100,10 @@ import_volume_df %>%
     x = "Month",
     y = "Total import volume (metric tons)",
     color = "Year"
-  )
+  ) +
+  transition_reveal(as.integer(month))
+
+animate(importvolume_plot, duration = 10, renderer = gifski_renderer())
 
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
   reduce(left_join, by = c("year", "month"), all = TRUE) %>%
@@ -105,14 +113,21 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
 
 ```
 
-```{r interactive_data_table}
+From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021.
+
+
+```{r interactive_data_table, fig.align='center'}
 combined_df %>%
   rename(Month = month,
          Year = year,
          "Monthly Confirmed Cases" = confirmed_of_month,
          "Number of Deaths" = deaths_of_month,
          "Number of Recovered" = recovered_of_month,
-         "Number of Active Cases" = active_of_month) %>% 
+         "Number of Active Cases" = active_of_month, 
+         "Export Product Type" = export_product_type,
+         "Export Volume" = export_volume, 
+         "Import Product Type" = import_product_type, 
+         "Import Volume" = import_volume) %>% 
 DT::datatable(., class = 'compact',
               rownames = FALSE,
               caption = 'Table')
@@ -120,7 +135,7 @@ DT::datatable(., class = 'compact',
 
 ## Export Volume vs. Covid Cases
 
-```{r, message=FALSE, echo =FALSE}
+```{r, message=FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
 summary(export_fit)
 
@@ -168,7 +183,11 @@ combined_df %>%
 
 ## Import Volume vs. Covid Cases 
 
+<<<<<<< HEAD
 ```{r, message=FALSE, echo = FALSE}
+=======
+```{r, message=FALSE}
+>>>>>>> f69cfbe1a56a80e1907aaee3b9699822f9f3bc7f
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
