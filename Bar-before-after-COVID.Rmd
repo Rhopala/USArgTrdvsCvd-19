@@ -124,7 +124,7 @@ ggplotly(covid_import_value_plot)
 
 ### Average Export Value Before/After Covid From 2018 To 2021
 
-This plot shows the United States’ average export values by product type before and after Covid-19. In general, the average import volume increased by approximately 18.44% after Covid-19 pandemic. Some of the products’ export value, such as corn, soybeans, dairy products, other oilseeds, and grains and feeds, have all increased by more than 20%. It is interesting to notice that ethanol, which is a renewable fuel made from corn and other plants, tobacco, distilled spirits, are only exported to other countries after the pandemic.
+This plot shows the United States’ average export values by product type before and after Covid-19. In general, the average export values increased by approximately 18.44% after Covid-19 pandemic. Some of the products’ export value, such as corn, soybeans, dairy products, other oilseeds, and grains and feeds, have all increased by more than 20%. It is interesting to notice that ethanol, which is a renewable fuel made from corn and other plants, tobacco, distilled spirits, are only exported to other countries after the pandemic.
 
 ```{r}
 covid_export_value_plot =  
@@ -214,7 +214,7 @@ ggplotly(covid_import_volume_plot)
 
 ## Average Export Volume Before/After Covid From 2018 To 2021
 
-This plot shows the United States’ average export volume by product type before and after Covid-19. In general, the average import volume increased by approximately 9.23% after Covid-19 pandemic. Some of the products’ export volume, such as sorghum, nonfat dry milk, red meats and products and coarse grains, have all increased by more than 10%. It is worth to point out that the export volume of sorghum have increased by 91.6%.
+This plot shows the United States’ average export volume by product type before and after Covid-19. In general, the average export volume increased by approximately 9.23% after Covid-19 pandemic. Some of the products’ export volume, such as sorghum, nonfat dry milk, red meats and products and coarse grains, have all increased by more than 10%. It is worth to point out that the export volume of sorghum have increased by 91.6%.
 
 ```{r}
 covid_export_volume_plot =  
