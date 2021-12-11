@@ -66,7 +66,9 @@ We plotted the correlation between the number of Covid-19 cases in the U.S. and 
 
 * No apparent association between covid cases and export or import. Covid Cases vs. Import Volume shows a slight positive relationship, while Covid Cases vs. Export Volume shows a relative negative association.
 
-* import and export both slightly increased after Covid-19 pandemic.
+* import and export values both slightly increased after Covid-19 pandemic.
+
+* import and export volumes do not have significant change after Covid-19 pandemic.
 
 * export volume of sorghum is especially prominent
 
