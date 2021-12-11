@@ -33,7 +33,7 @@ scale_fill_discrete = scale_fill_viridis_d
 ```
 
 
-```{r, message=FALSE, echo = FALSE}
+```{r, message=FALSE}
 ## Import data 
 covid = 
   read_csv("./data/covid_data_monthly.csv") %>% 
@@ -88,7 +88,7 @@ import_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-import_volume_df %>% 
+importvolume_plot = import_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_import = sum(import_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
@@ -100,7 +100,10 @@ import_volume_df %>%
     x = "Month",
     y = "Total import volume (metric tons)",
     color = "Year"
-  )
+  ) +
+  transition_reveal(as.integer(month))
+
+animate(importvolume_plot, duration = 10, renderer = gifski_renderer())
 
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
   reduce(left_join, by = c("year", "month"), all = TRUE) %>%
@@ -132,7 +135,7 @@ DT::datatable(., class = 'compact',
 
 ## Export Volume vs. Covid Cases
 
-```{r, message=FALSE, echo =FALSE}
+```{r, message=FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
 summary(export_fit)
 
@@ -180,7 +183,7 @@ combined_df %>%
 
 ## Import Volume vs. Covid Cases 
 
-```{r, message=FALSE, echo =FALSE}
+```{r, message=FALSE}
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
