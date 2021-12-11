@@ -1,19 +1,21 @@
 ---
-title: "Covid Cases vs. Export/Import Volume"
+title: "Covid Cases vs. Export and Import Volume"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(dplyr)
+library(gganimate)
+
 
 library(plotly)
 
 knitr::opts_chunk$set(
   echo = TRUE,
   warning = FALSE,
-  fig.width = 8,
-  fig.height = 6,
+  fig.width = 6,
+  fig.height = 4,
   out.width = "90%"
 )
 
@@ -46,8 +48,13 @@ covid %>%
   ggplot(aes(x = month, y = Confirmed_of_Month, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) +
-  xlab("Month") +
-  ylab("Confirmed cases per month")
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
+  labs(
+    title = "Monthy Covid Cases",
+    x = "Month",
+    y = "Confirmed cases per month",
+    color = "Year"
+  )
 
 export_volume_df = 
   read_csv("./data/cleaned data/export_volume_combined.csv") %>% 
@@ -56,16 +63,22 @@ export_volume_df =
          month = ordered(month, levels = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")),
          year = as.character(year))
 
-export_volume_df %>% 
+exportvolume_plot = export_volume_df %>% 
   group_by(month,year) %>% 
   summarize(sum_of_export = sum(export_volume)) %>% 
   ggplot(aes(x = month, y = sum_of_export, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
-  xlab("Month") +
-  ylab("Sum of export volume (metric tons)")
-  
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
+  labs(
+    title = "Monthy Export",
+    x = "Month",
+    y = "Total export volume (metric tons)",
+    color = "Year"
+  ) +
+  transition_reveal(as.integer(month))
+
+animate(exportvolume_plot, duration = 10, renderer = gifski_renderer())
 
 
 import_volume_df = 
@@ -81,10 +94,13 @@ import_volume_df %>%
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
-  xlab("Month") +
-  ylab("Sum of import volume (metric tons)")
-
+   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) + 
+  labs(
+    title = "Monthy Import",
+    x = "Month",
+    y = "Total import volume (metric tons)",
+    color = "Year"
+  )
 
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
   reduce(left_join, by = c("year", "month"), all = TRUE) %>%
@@ -92,12 +108,29 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
   rename("export_product_type" = "product_type_x",
          "import_product_type" = "product_type_y") 
 
-
-
 ```
 
+From the graph, we are seeing gradually increases of Covid case for both 2020 and 2021.
 
-## export vs. covid case 
+
+```{r interactive_data_table, fig.align='center'}
+combined_df %>%
+  rename(Month = month,
+         Year = year,
+         "Monthly Confirmed Cases" = confirmed_of_month,
+         "Number of Deaths" = deaths_of_month,
+         "Number of Recovered" = recovered_of_month,
+         "Number of Active Cases" = active_of_month, 
+         "Export Product Type" = export_product_type,
+         "Export Volume" = export_volume, 
+         "Import Product Type" = import_product_type, 
+         "Import Volume" = import_volume) %>% 
+DT::datatable(., class = 'compact',
+              rownames = FALSE,
+              caption = 'Table')
+```
+
+## Export Volume vs. Covid Cases
 
 ```{r, message=FALSE, echo =FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
@@ -116,7 +149,11 @@ export_df =
 export_df %>% 
   na.omit() %>% 
   ggplot(aes(x = estimate)) +
-  geom_density()
+  geom_density() +
+  labs(
+    x = "Estimate",
+    y = "Density"
+  )
 
 export_plot = combined_df %>% 
   group_by(month, year, confirmed_of_month) %>% 
@@ -133,7 +170,7 @@ combined_df %>%
   mutate(
     text_label = str_c("Confirmed Cases: $", confirmed_of_month, "\nExport Volume: ", export_volume)) %>% 
   plot_ly(
-    x = ~ confirmed_of_month, y = ~ export_volume, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)%>%
+    x = ~ confirmed_of_month, y = ~ export_volume, type = "box", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)%>%
   layout(xaxis = list(title = "Confrimed cases per month"),
          yaxis = list(title = "Export volume (metirc tons)"))
 
@@ -141,7 +178,7 @@ combined_df %>%
 ```
 
 
-## import vs. covid case 
+## Import Volume vs. Covid Cases 
 
 ```{r, message=FALSE, echo =FALSE}
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
@@ -159,7 +196,11 @@ import_df =
   
 import_df %>% 
   ggplot(aes(x = estimate)) +
-  geom_density()
+  geom_density() +
+  labs(
+    x = "Estimate",
+    y = "Density"
+  )
 
 
 import_plot = combined_df %>% 
