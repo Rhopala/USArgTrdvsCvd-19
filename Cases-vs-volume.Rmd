@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo = FALSE}
 ## Import data 
 covid = 
   read_csv("./data/covid_data_monthly.csv") %>% 
@@ -33,7 +33,9 @@ covid =
 covid %>% 
   ggplot(aes(x = month, y = Confirmed_of_Month, color = year)) + 
   geom_line(aes(group = year)) +
-  geom_point(size = 1.5)
+  geom_point(size = 1.5) +
+  xlab("Month") +
+  ylab("Confirmed cases per month")
 
 export_volume_df = 
   read_csv("./data/cleaned data/export_volume_combined.csv") %>% 
@@ -48,7 +50,10 @@ export_volume_df %>%
   ggplot(aes(x = month, y = sum_of_export, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  xlab("Month") +
+  ylab("Sum of export volume (metric tons)")
+  
 
 
 import_volume_df = 
@@ -64,7 +69,9 @@ import_volume_df %>%
   ggplot(aes(x = month, y = sum_of_import, color = year)) + 
   geom_line(aes(group = year)) +
   geom_point(size = 1.5) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
+  xlab("Month") +
+  ylab("Sum of import volume (metric tons)")
 
 
 combined_df = list(covid, export_volume_df, import_volume_df) %>% 
@@ -80,7 +87,7 @@ combined_df = list(covid, export_volume_df, import_volume_df) %>%
 
 ## export vs. covid case 
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo =FALSE}
 export_fit = lm(export_volume ~ confirmed_of_month, data = combined_df)
 summary(export_fit)
 
@@ -108,13 +115,15 @@ ggplot(aes(x = confirmed_of_month, y = export_sum)) +
   geom_smooth(se = F, color = "red", method = "lm", size = 1, linetype = 2) +
   labs(title = "Covid Cases vs. Export Volume", 
        x = "Covid Cases", 
-       y = "Export Volume")
+       y = "Export Volume (metric tons)")
 
 combined_df %>% 
   mutate(
     text_label = str_c("Confirmed Cases: $", confirmed_of_month, "\nExport Volume: ", export_volume)) %>% 
   plot_ly(
-    x = ~ confirmed_of_month, y = ~ export_volume, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)
+    x = ~ confirmed_of_month, y = ~ export_volume, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)%>%
+  layout(xaxis = list(title = "Confrimed cases per month"),
+         yaxis = list(title = "Export volume (metirc tons)"))
 
 
 ```
@@ -122,7 +131,7 @@ combined_df %>%
 
 ## import vs. covid case 
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo =FALSE}
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
@@ -150,7 +159,7 @@ import_plot = combined_df %>%
   geom_smooth(se = F, color = "red", method = "lm", size = 1, linetype = 2) +
   labs(title = "Covid Cases vs. Import Volume", 
        x = "Covid Cases", 
-       y = "Import Volume")
+       y = "Import Volume (metric tons)")
   
 
 combined_df %>% 
@@ -159,9 +168,11 @@ combined_df %>%
   mutate(
     text_label = str_c("Confirmed Cases: $", confirmed_of_month, "\nImport Volume: ", import_sum)) %>% 
   plot_ly(
-    x = ~ confirmed_of_month, y = ~ import_sum, type = "scatter", mode = "markers", color = ~month, text = ~text_label, alpha = 0.5)
+    x = ~ confirmed_of_month, y = ~ import_sum, type = "scatter", mode = "markers", color = ~month, text = ~text_label)%>%
+  layout(xaxis = list(title = "Covid cases per month"), 
+       yaxis = list(title = "Sum of import volume per month (metric tons)"))
 ```
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo = FALSE}
 ggpubr::ggarrange(import_plot, export_plot)
 ```
