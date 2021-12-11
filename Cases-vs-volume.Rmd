@@ -202,7 +202,10 @@ This plotly graph illustrates the export volume in metric tons (y) vs. confirmed
 
 ## Import Volume vs. Covid Cases 
 
-```{r, message=FALSE}
+
+```{r, message=FALSE, echo = FALSE}
+
+
 import_fit = lm(import_volume ~ confirmed_of_month, data = combined_df)
 summary(import_fit)
 
